@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ShareDecorations from "@/components/share/ShareDecorations";
 
 function IconUpload() {
   return (
@@ -27,7 +28,7 @@ const benefits = [
 export default function ShareSection() {
   return (
     <section className="relative w-full">
-      <div className="mx-auto max-w-7xl px-6 py-16">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-16">
         <div className="mx-auto max-w-3xl border border-emerald-700 bg-zinc-900">
           <div className="flex justify-center pt-10">
             <div className="grid place-items-center h-16 w-16 border border-emerald-700 text-emerald-500">
@@ -62,7 +63,7 @@ export default function ShareSection() {
           </div>
         </div>
       </div>
+      <ShareDecorations />
     </section>
   );
 }
-
