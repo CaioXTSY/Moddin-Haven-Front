@@ -5,7 +5,7 @@ import AuthButtons from "@/components/header/AuthButtons";
 
 export default function Header() {
   return (
-    <header className="w-full bg-black">
+    <header className="sticky top-0 z-50 w-full border-b border-zinc-800 bg-black/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-6 px-6">
         <Logo />
         <div className="flex-1 flex justify-center">
