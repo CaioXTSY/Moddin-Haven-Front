@@ -325,15 +325,6 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
                 </button>
               </div>
             </div>
-
-            <div className="border border-zinc-700 bg-zinc-900 p-4">
-              <div className="text-zinc-50 text-lg font-semibold">Requirements</div>
-              <ul className="mt-3 list-disc pl-5 text-sm text-zinc-300">
-                {(mod.requirements ?? ["Windows 10/11"]).map((r, i) => (
-                  <li key={`${r}-${i}`}>{r}</li>
-                ))}
-              </ul>
-            </div>
           </aside>
         </div>
       </div>
