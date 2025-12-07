@@ -19,14 +19,14 @@ type Mod = {
 
 
 const allMods: Mod[] = [
-  { title: "Pablo Mod", author: "pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
-  { title: "Neon Streets", author: "maria", category: "graphics", downloads: 8900, rating: 4.7, imageSrc: "/img.png", updatedAt: "2025-11-22", followers: 1200, tags: ["Client", "Graphics"] },
-  { title: "Rapid Fire", author: "joao", category: "weapons", downloads: 6200, rating: 4.5, imageSrc: "/img.png", updatedAt: "2025-12-01", followers: 3100, tags: ["Client", "Weapons"] },
-  { title: "Turbo Drift", author: "ana", category: "vehicles", downloads: 7100, rating: 4.6, imageSrc: "/img.png", updatedAt: "2025-11-28", followers: 900, tags: ["Client", "Vehicles"] },
-  { title: "Shader FX", author: "luis", category: "graphics", downloads: 3500, rating: 4.4, imageSrc: "/img.png", updatedAt: "2025-10-30", followers: 600, tags: ["Client", "Graphics"] },
-  { title: "Creator Tools", author: "daniel", category: "tools", downloads: 9800, rating: 4.9, imageSrc: "/img.png", updatedAt: "2025-12-02", followers: 1500, tags: ["Client", "Tools"] },
-  { title: "Street Style", author: "ivy", category: "characters", downloads: 5400, rating: 4.6, imageSrc: "/img.png", updatedAt: "2025-11-08", followers: 1100, tags: ["Client", "Characters"] },
-  { title: "Cops AI", author: "rafa", category: "scripting", downloads: 4600, rating: 4.3, imageSrc: "/img.png", updatedAt: "2025-11-18", followers: 800, tags: ["Client", "Scripting"] },
+  { title: "Pablo mod", author: "Pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
+  { title: "Pablo mod", author: "Pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
+  { title: "Pablo mod", author: "Pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
+  { title: "Pablo mod", author: "Pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
+  { title: "Pablo mod", author: "Pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
+  { title: "Pablo mod", author: "Pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
+  { title: "Pablo mod", author: "Pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
+  { title: "Pablo mod", author: "Pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
 ];
 
 
@@ -271,8 +271,8 @@ function ModsContent() {
             <div className="mt-3 text-zinc-400 text-sm">{total} result(s)</div>
 
             <div className="mt-6 space-y-4">
-              {pageItems.map((m) => (
-                <div key={`${m.title}-${m.author}`} className="flex items-start gap-4 border border-zinc-700 bg-zinc-900 p-4">
+              {pageItems.map((m, i) => (
+                <div key={`${m.title}-${m.author}-${i}`} className="flex items-start gap-4 border border-zinc-700 bg-zinc-900 p-4">
                   <div className="shrink-0">
                     <Link href={`/mods/${toSlug(m.title)}`}>
                       <Image src={m.imageSrc} alt={m.title} width={64} height={64} className="border border-zinc-700" />
