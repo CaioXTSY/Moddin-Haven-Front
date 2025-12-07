@@ -92,6 +92,10 @@ function formatUpdatedAt(iso: string) {
   return `Updated ${months} month${months > 1 ? "s" : ""} ago`;
 }
 
+function toSlug(s: string) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
 function ModsContent() {
   const params = useSearchParams();
   const router = useRouter();
@@ -270,11 +274,15 @@ function ModsContent() {
               {pageItems.map((m) => (
                 <div key={`${m.title}-${m.author}`} className="flex items-start gap-4 border border-zinc-700 bg-zinc-900 p-4">
                   <div className="shrink-0">
-                    <Image src={m.imageSrc} alt={m.title} width={64} height={64} className="border border-zinc-700" />
+                    <Link href={`/mods/${toSlug(m.title)}`}>
+                      <Image src={m.imageSrc} alt={m.title} width={64} height={64} className="border border-zinc-700" />
+                    </Link>
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <div className="text-zinc-50 text-lg font-semibold">{m.title}</div>
+                      <Link href={`/mods/${toSlug(m.title)}`} className="text-zinc-50 text-lg font-semibold hover:text-emerald-500">
+                        {m.title}
+                      </Link>
                       <div className="text-zinc-500 text-sm">by {m.author}</div>
                     </div>
                     <div className="mt-2 flex flex-wrap items-center gap-2">
