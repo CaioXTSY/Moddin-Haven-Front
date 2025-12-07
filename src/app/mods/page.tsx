@@ -3,6 +3,7 @@ import { Suspense, useMemo, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import DecorativeBoxes from "@/components/hero/DecorativeBoxes";
 
 type Mod = {
   title: string;
@@ -345,6 +346,7 @@ function ModsContent() {
         </div>
 
       </div>
+      <DecorativeBoxes />
     </section>
   );
 }

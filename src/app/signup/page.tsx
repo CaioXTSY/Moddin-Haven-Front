@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import DecorativeBoxes from "@/components/hero/DecorativeBoxes";
 
 export default function SignupPage() {
   const [username, setUsername] = useState("");
@@ -19,7 +20,7 @@ export default function SignupPage() {
   }
 
   return (
-    <section className="w-full min-h-[calc(100vh-56px)] flex items-center">
+    <section className="relative w-full min-h-[calc(100vh-56px)] flex items-center">
       <div className="mx-auto max-w-7xl px-6 w-full">
         <div className="mx-auto w-full max-w-md border border-zinc-700 bg-zinc-900 px-8 py-8">
           <h1 className="text-zinc-50 text-3xl font-bold">Sign Up</h1>
@@ -78,6 +79,7 @@ export default function SignupPage() {
           </div>
         </div>
       </div>
+      <DecorativeBoxes />
     </section>
   );
 }

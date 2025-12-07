@@ -38,8 +38,8 @@ function IconHeart() {
 
 export default function StatsSection() {
   return (
-    <section className="relative w-full">
-      <div className="mx-auto max-w-7xl px-6 py-16">
+    <section className="relative w-full overflow-hidden">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-16">
         <div>
           <h2 className="text-zinc-50 text-3xl sm:text-4xl font-bold">By The Numbers</h2>
           <p className="mt-2 text-zinc-400">The Modding Haven community keeps growing</p>
@@ -51,7 +51,10 @@ export default function StatsSection() {
           <StatsCard icon={<IconHeart />} title="Avg. Rating" value="4.7★" description="Community satisfaction score" />
         </div>
       </div>
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-12 top-10 h-56 w-56 border border-emerald-900/20" />
+        <div className="absolute right-16 top-40 h-48 w-48 border border-emerald-900/20 rotate-45" />
+      </div>
     </section>
   );
 }
-

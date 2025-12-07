@@ -4,7 +4,7 @@ import FeaturedDecorations from "@/components/featured/FeaturedDecorations";
 
 export default function FeaturedSection() {
   return (
-    <section className="relative w-full">
+    <section className="relative w-full overflow-hidden">
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-16">
         <div className="flex items-end justify-between">
           <div>

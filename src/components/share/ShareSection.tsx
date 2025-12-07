@@ -15,7 +15,7 @@ function IconUpload() {
 
 export default function ShareSection() {
   return (
-    <section className="relative w-full">
+    <section className="relative w-full overflow-hidden">
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-16">
         <div className="border border-zinc-700 bg-zinc-900 px-8 py-8 flex items-center justify-between">
           <div className="flex items-center gap-4">
