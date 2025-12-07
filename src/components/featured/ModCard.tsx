@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type Props = {
   title: string;
@@ -28,8 +29,9 @@ function StatIconDownload() {
 }
 
 export default function ModCard({ title, author, category, downloads, rating, imageSrc }: Props) {
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
   return (
-    <div className="relative group border border-zinc-800 bg-black">
+    <Link href={`/mods/${slug}`} className="relative group border border-zinc-800 bg-black">
       <div className="relative h-64 w-full md:h-72 overflow-hidden">
         <Image src={imageSrc} alt={title} fill priority className="object-cover transition-transform duration-500 group-hover:scale-[1.05]" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70" />
@@ -66,6 +68,6 @@ export default function ModCard({ title, author, category, downloads, rating, im
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
