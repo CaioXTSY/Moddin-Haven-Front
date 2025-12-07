@@ -99,6 +99,7 @@ function ModsContent() {
   const selectedCategoryParam = params.get("category") ?? "";
   const sortParam = params.get("sort") ?? "popular";
   const viewParam = parseInt(params.get("view") ?? "20", 10) || 20;
+  const pageParam = parseInt(params.get("page") ?? "1", 10) || 1;
   const [catSearch, setCatSearch] = useState("");
 
   const categoryMeta = useMemo(() => ([
@@ -139,15 +140,24 @@ function ModsContent() {
     if (sortParam === "popular") list = [...list].sort((a, b) => b.downloads - a.downloads);
     else if (sortParam === "top") list = [...list].sort((a, b) => b.rating - a.rating);
     else if (sortParam === "new") list = [...list].sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt));
-    return list.slice(0, viewParam);
-  }, [queryParam, selectedCategoryParam, sortParam, viewParam]);
+    return list;
+  }, [queryParam, selectedCategoryParam, sortParam]);
 
-  function applyParams(next: { query?: string; category?: string; sort?: string; view?: string }) {
+  const total = filtered.length;
+  const pageSize = viewParam;
+  const pageCount = Math.max(1, Math.ceil(total / pageSize));
+  const page = Math.min(Math.max(pageParam, 1), pageCount);
+  const start = (page - 1) * pageSize;
+  const end = start + pageSize;
+  const pageItems = filtered.slice(start, end);
+
+  function applyParams(next: { query?: string; category?: string; sort?: string; view?: string; page?: string }) {
     const p = new URLSearchParams({
       query: next.query ?? queryParam,
       category: next.category ?? selectedCategoryParam,
       sort: next.sort ?? sortParam,
       view: next.view ?? String(viewParam),
+      page: next.page ?? String(page),
     });
     router.replace(`/mods?${p.toString()}`);
   }
@@ -185,7 +195,7 @@ function ModsContent() {
                 />
               </div>
               <div className="mt-3 space-y-2">
-                <button onClick={() => { applyParams({ category: "" }); }} className={`flex w-full items-center justify-between border px-3 py-2 text-sm ${selectedCategoryParam === "" ? "border-emerald-700 text-emerald-500" : "border-zinc-700 text-zinc-300"}`}>
+                <button onClick={() => { applyParams({ category: "", page: "1" }); }} className={`flex w-full items-center justify-between border px-3 py-2 text-sm ${selectedCategoryParam === "" ? "border-emerald-700 text-emerald-500" : "border-zinc-700 text-zinc-300"}`}>
                   <div className="flex items-center gap-3">
                     <div className="grid place-items-center h-6 w-6 border border-zinc-700 text-emerald-500">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
@@ -197,7 +207,7 @@ function ModsContent() {
                   <span className="text-xs text-zinc-400">{allMods.length}</span>
                 </button>
                 {filteredCategories.map((c) => (
-                  <button key={c.slug} onClick={() => { applyParams({ category: c.slug }); }} className={`flex w-full items-center justify-between border px-3 py-2 text-sm ${selectedCategoryParam === c.slug ? "border-emerald-700 text-emerald-500" : "border-zinc-700 text-zinc-300"}`}>
+                  <button key={c.slug} onClick={() => { applyParams({ category: c.slug, page: "1" }); }} className={`flex w-full items-center justify-between border px-3 py-2 text-sm ${selectedCategoryParam === c.slug ? "border-emerald-700 text-emerald-500" : "border-zinc-700 text-zinc-300"}`}>
                     <div className="flex items-center gap-3">
                       <div className={`grid place-items-center h-6 w-6 border ${selectedCategoryParam === c.slug ? "border-emerald-700 text-emerald-500" : "border-zinc-700 text-zinc-400"}`}>
                         {c.icon}
@@ -219,8 +229,8 @@ function ModsContent() {
                 </svg>
                 <input
                   defaultValue={queryParam}
-                  onBlur={(e) => applyParams({ query: e.target.value })}
-                  onKeyDown={(e) => { if (e.key === "Enter") applyParams({ query: (e.target as HTMLInputElement).value }); }}
+                  onBlur={(e) => applyParams({ query: e.target.value, page: "1" })}
+                  onKeyDown={(e) => { if (e.key === "Enter") applyParams({ query: (e.target as HTMLInputElement).value, page: "1" }); }}
                   placeholder="Search mods..."
                   className="ml-2 w-full bg-transparent text-sm placeholder:text-zinc-500 focus:outline-none"
                 />
@@ -230,7 +240,7 @@ function ModsContent() {
                   <label className="text-zinc-400 text-xs">Sort</label>
                   <select
                     value={sortParam}
-                    onChange={(e) => { applyParams({ sort: e.target.value }); }}
+                    onChange={(e) => { applyParams({ sort: e.target.value, page: "1" }); }}
                     className="border border-zinc-700 bg-zinc-900 px-2 py-2 text-sm text-zinc-200"
                   >
                     <option value="popular">Popular</option>
@@ -242,7 +252,7 @@ function ModsContent() {
                   <label className="text-zinc-400 text-xs">View</label>
                   <select
                     value={String(viewParam)}
-                    onChange={(e) => { applyParams({ view: e.target.value }); }}
+                    onChange={(e) => { applyParams({ view: e.target.value, page: "1" }); }}
                     className="border border-zinc-700 bg-zinc-900 px-2 py-2 text-sm text-zinc-200"
                   >
                     <option value="10">10</option>
@@ -253,10 +263,10 @@ function ModsContent() {
               </div>
             </div>
 
-            <div className="mt-3 text-zinc-400 text-sm">{filtered.length} result(s)</div>
+            <div className="mt-3 text-zinc-400 text-sm">{total} result(s)</div>
 
             <div className="mt-6 space-y-4">
-              {filtered.map((m) => (
+              {pageItems.map((m) => (
                 <div key={`${m.title}-${m.author}`} className="flex items-start gap-4 border border-zinc-700 bg-zinc-900 p-4">
                   <div className="shrink-0">
                     <Image src={m.imageSrc} alt={m.title} width={64} height={64} className="border border-zinc-700" />
@@ -302,6 +312,34 @@ function ModsContent() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-8 flex items-center justify-between">
+              <div className="text-zinc-400 text-sm">
+                {total === 0 ? 0 : start + 1}–{Math.min(total, end)} of {total}
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => applyParams({ page: String(Math.max(1, page - 1)) })}
+                  disabled={page <= 1}
+                  className="grid place-items-center h-8 w-8 border border-zinc-700 text-zinc-300 disabled:opacity-50"
+                >
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+                    <path d="M16 5l-8 7 8 7" fill="none" stroke="currentColor" strokeWidth="2" />
+                  </svg>
+                </button>
+                <div className="px-2 py-1 border border-zinc-700 text-xs text-zinc-300">{page}</div>
+                <span className="text-xs text-zinc-500">/ {pageCount}</span>
+                <button
+                  onClick={() => applyParams({ page: String(Math.min(pageCount, page + 1)) })}
+                  disabled={page >= pageCount}
+                  className="grid place-items-center h-8 w-8 border border-zinc-700 text-zinc-300 disabled:opacity-50"
+                >
+                  <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+                    <path d="M8 5l8 7-8 7" fill="none" stroke="currentColor" strokeWidth="2" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
