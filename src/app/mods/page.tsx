@@ -173,10 +173,10 @@ function ModsContent() {
         <div className="flex items-end justify-between">
           <div>
             <h1 className="text-zinc-50 text-3xl sm:text-4xl font-bold">Browse Mods</h1>
-            <div className="mt-3 h-px w-16 bg-emerald-700" />
+            <div className="mt-3 h-px w-16 bg-purple-700" />
             <p className="mt-3 text-zinc-400">Search, filter by category, and sort results.</p>
           </div>
-          <Link href="/categories" className="border border-emerald-700 px-2 py-1 text-sm text-emerald-500 hover:bg-emerald-600 hover:text-black transition">Categories →</Link>
+          <Link href="/categories" className="border border-purple-700 px-2 py-1 text-sm text-purple-500 hover:bg-purple-600 hover:text-black transition">Categories →</Link>
         </div>
 
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4">
@@ -185,7 +185,7 @@ function ModsContent() {
               <div className="flex items-center justify-between">
                 <div className="text-zinc-300 text-sm">Category</div>
                 {selectedCategoryParam && (
-                  <button onClick={() => { applyParams({ category: "" }); }} className="text-xs text-emerald-500">Clear</button>
+                  <button onClick={() => { applyParams({ category: "" }); }} className="text-xs text-purple-500">Clear</button>
                 )}
               </div>
               <div className="mt-3 flex items-center border border-zinc-700 bg-zinc-800 px-2 py-1">
@@ -200,9 +200,9 @@ function ModsContent() {
                 />
               </div>
               <div className="mt-3 space-y-2">
-                <button onClick={() => { applyParams({ category: "", page: "1" }); }} className={`flex w-full items-center justify-between border px-3 py-2 text-sm ${selectedCategoryParam === "" ? "border-emerald-700 text-emerald-500" : "border-zinc-700 text-zinc-300"}`}>
+                <button onClick={() => { applyParams({ category: "", page: "1" }); }} className={`flex w-full items-center justify-between border px-3 py-2 text-sm ${selectedCategoryParam === "" ? "border-purple-700 text-purple-500" : "border-zinc-700 text-zinc-300"}`}>
                   <div className="flex items-center gap-3">
-                    <div className="grid place-items-center h-6 w-6 border border-zinc-700 text-emerald-500">
+                    <div className="grid place-items-center h-6 w-6 border border-zinc-700 text-purple-500">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
                         <path d="M8 5l8 7-8 7" fill="none" stroke="currentColor" strokeWidth="2" />
                       </svg>
@@ -212,9 +212,9 @@ function ModsContent() {
                   <span className="text-xs text-zinc-400">{allMods.length}</span>
                 </button>
                 {filteredCategories.map((c) => (
-                  <button key={c.slug} onClick={() => { applyParams({ category: c.slug, page: "1" }); }} className={`flex w-full items-center justify-between border px-3 py-2 text-sm ${selectedCategoryParam === c.slug ? "border-emerald-700 text-emerald-500" : "border-zinc-700 text-zinc-300"}`}>
+                  <button key={c.slug} onClick={() => { applyParams({ category: c.slug, page: "1" }); }} className={`flex w-full items-center justify-between border px-3 py-2 text-sm ${selectedCategoryParam === c.slug ? "border-purple-700 text-purple-500" : "border-zinc-700 text-zinc-300"}`}>
                     <div className="flex items-center gap-3">
-                      <div className={`grid place-items-center h-6 w-6 border ${selectedCategoryParam === c.slug ? "border-emerald-700 text-emerald-500" : "border-zinc-700 text-zinc-400"}`}>
+                      <div className={`grid place-items-center h-6 w-6 border ${selectedCategoryParam === c.slug ? "border-purple-700 text-purple-500" : "border-zinc-700 text-zinc-400"}`}>
                         {c.icon}
                       </div>
                       <span>{c.name}</span>
@@ -280,7 +280,7 @@ function ModsContent() {
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <Link href={`/mods/${toSlug(m.title)}`} className="text-zinc-50 text-lg font-semibold hover:text-emerald-500">
+                      <Link href={`/mods/${toSlug(m.title)}`} className="text-zinc-50 text-lg font-semibold hover:text-purple-500">
                         {m.title}
                       </Link>
                       <div className="text-zinc-500 text-sm">by {m.author}</div>

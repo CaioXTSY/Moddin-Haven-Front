@@ -34,7 +34,7 @@ export default function ModCard({ title, author, category, downloads, rating, im
         <Image src={imageSrc} alt={title} fill priority className="object-cover transition-transform duration-500 group-hover:scale-[1.05]" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70" />
 
-        <div className="absolute left-4 top-4 inline-flex items-center gap-2 bg-emerald-600 px-2 py-1 text-[11px] font-semibold tracking-wide text-black uppercase">
+        <div className="absolute left-4 top-4 inline-flex items-center gap-2 bg-purple-600 px-2 py-1 text-[11px] font-semibold tracking-wide text-black uppercase">
           <svg viewBox="0 0 24 24" className="h-3 w-3" aria-hidden>
             <rect x="4" y="6" width="16" height="12" fill="currentColor" />
           </svg>
@@ -46,7 +46,7 @@ export default function ModCard({ title, author, category, downloads, rating, im
             <StatIconDownload />
             {downloads}
           </div>
-          <div className="inline-flex items-center gap-1 border border-zinc-700 bg-black/60 px-2 py-1 text-xs text-emerald-500 backdrop-blur">
+          <div className="inline-flex items-center gap-1 border border-zinc-700 bg-black/60 px-2 py-1 text-xs text-purple-500 backdrop-blur">
             <StatIconStar />
             {rating}
           </div>
@@ -58,7 +58,7 @@ export default function ModCard({ title, author, category, downloads, rating, im
               <div className="text-zinc-50 text-xl font-semibold tracking-wide">{title}</div>
               <div className="mt-1 text-zinc-400 text-sm">created by {author}</div>
             </div>
-            <div className="grid place-items-center h-8 w-8 border border-emerald-700 text-emerald-500 bg-black/60 backdrop-blur transition-colors group-hover:bg-emerald-600 group-hover:text-black">
+            <div className="grid place-items-center h-8 w-8 border border-purple-700 text-purple-500 bg-black/60 backdrop-blur transition-colors group-hover:bg-purple-600 group-hover:text-black">
               <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
                 <path d="M5 12h12M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" />
               </svg>

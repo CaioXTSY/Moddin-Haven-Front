@@ -12,7 +12,7 @@ export default function NavLinks() {
         <Link
           href="/mods"
           className={`inline-flex items-center gap-1 text-sm ${
-            isActive("/mods") ? "text-emerald-500" : "text-zinc-300 hover:text-zinc-100"
+            isActive("/mods") ? "text-purple-500" : "text-zinc-300 hover:text-zinc-100"
           }`}
         >
           <span>Mods</span>
@@ -22,9 +22,9 @@ export default function NavLinks() {
         </Link>
         <div className="absolute left-0 top-full hidden group-hover:block pt-2 z-50">
           <div className="border border-zinc-700 bg-black p-2 w-48">
-            <Link href="/mods?sort=popular" className="block px-2 py-1 text-xs text-zinc-300 hover:text-emerald-500">Popular</Link>
-            <Link href="/mods?sort=new" className="block px-2 py-1 text-xs text-zinc-300 hover:text-emerald-500">New</Link>
-            <Link href="/mods?sort=top" className="block px-2 py-1 text-xs text-zinc-300 hover:text-emerald-500">Top Rated</Link>
+            <Link href="/mods?sort=popular" className="block px-2 py-1 text-xs text-zinc-300 hover:text-purple-500">Popular</Link>
+            <Link href="/mods?sort=new" className="block px-2 py-1 text-xs text-zinc-300 hover:text-purple-500">New</Link>
+            <Link href="/mods?sort=top" className="block px-2 py-1 text-xs text-zinc-300 hover:text-purple-500">Top Rated</Link>
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@ export default function NavLinks() {
       <Link
         href="/categories"
         className={`text-sm ${
-          isActive("/categories") ? "text-emerald-500" : "text-zinc-300 hover:text-zinc-100"
+          isActive("/categories") ? "text-purple-500" : "text-zinc-300 hover:text-zinc-100"
         }`}
       >
         Categories

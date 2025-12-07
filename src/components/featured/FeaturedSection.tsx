@@ -9,10 +9,10 @@ export default function FeaturedSection() {
         <div className="flex items-end justify-between">
           <div>
             <h2 className="text-zinc-50 text-3xl sm:text-4xl font-bold">Featured Mods</h2>
-            <div className="mt-3 h-px w-16 bg-emerald-700" />
+            <div className="mt-3 h-px w-16 bg-purple-700" />
             <p className="mt-3 text-zinc-400">Handpicked modifications loved by the community</p>
           </div>
-          <Link href="/mods" className="border border-emerald-700 px-2 py-1 text-sm text-emerald-500 hover:bg-emerald-600 hover:text-black transition">View all →</Link>
+          <Link href="/mods" className="border border-purple-700 px-2 py-1 text-sm text-purple-500 hover:bg-purple-600 hover:text-black transition">View all →</Link>
         </div>
         <div className="mt-8">
           <FeaturedGrid />

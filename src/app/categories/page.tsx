@@ -49,7 +49,7 @@ function CategoryTile({ icon, name, count, href }: { icon: React.ReactNode; name
     <Link href={href} className="group block border border-zinc-700 bg-zinc-900 p-5">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="grid place-items-center h-9 w-9 border border-emerald-700 text-emerald-500">
+          <div className="grid place-items-center h-9 w-9 border border-purple-700 text-purple-500">
             {icon}
           </div>
           <div>
@@ -57,7 +57,7 @@ function CategoryTile({ icon, name, count, href }: { icon: React.ReactNode; name
             <div className="text-zinc-500 text-sm">{count} mods</div>
           </div>
         </div>
-        <div className="grid place-items-center h-8 w-8 border border-zinc-700 text-zinc-400 transition-colors group-hover:border-emerald-700 group-hover:text-emerald-500">
+        <div className="grid place-items-center h-8 w-8 border border-zinc-700 text-zinc-400 transition-colors group-hover:border-purple-700 group-hover:text-purple-500">
           <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
             <path d="M8 5l8 7-8 7" fill="none" stroke="currentColor" strokeWidth="2" />
           </svg>
@@ -83,10 +83,10 @@ export default function CategoriesPage() {
         <div className="flex items-end justify-between">
           <div>
             <h1 className="text-zinc-50 text-3xl sm:text-4xl font-bold">Browse by Category</h1>
-            <div className="mt-3 h-px w-16 bg-emerald-700" />
+            <div className="mt-3 h-px w-16 bg-purple-700" />
             <p className="mt-3 text-zinc-400">Choose a category to explore recommended and popular mods.</p>
           </div>
-          <Link href="/mods" className="border border-emerald-700 px-2 py-1 text-sm text-emerald-500 hover:bg-emerald-600 hover:text-black transition">View all mods →</Link>
+          <Link href="/mods" className="border border-purple-700 px-2 py-1 text-sm text-purple-500 hover:bg-purple-600 hover:text-black transition">View all mods →</Link>
         </div>
 
         
@@ -104,14 +104,14 @@ export default function CategoriesPage() {
               <span className="text-zinc-50 text-sm font-semibold">Submit your mod</span>
               <span className="hidden sm:inline text-zinc-400 text-xs">Publish in minutes and reach the community.</span>
             </div>
-            <Link href="/submit" className="inline-block bg-emerald-600 px-3 py-1.5 text-xs font-medium text-black hover:bg-emerald-500">Submit</Link>
+            <Link href="/submit" className="inline-block bg-purple-600 px-3 py-1.5 text-xs font-medium text-black hover:bg-purple-500">Submit</Link>
           </div>
         </div>
       </div>
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-10 top-24 h-48 w-48 border border-emerald-900/20" />
-        <div className="absolute right-16 top-40 h-56 w-56 border border-emerald-900/20 rotate-45" />
-        <div className="absolute left-24 bottom-24 h-40 w-40 border border-emerald-900/20" />
+        <div className="absolute left-10 top-24 h-48 w-48 border border-purple-900/20" />
+        <div className="absolute right-16 top-40 h-56 w-56 border border-purple-900/20 rotate-45" />
+        <div className="absolute left-24 bottom-24 h-40 w-40 border border-purple-900/20" />
       </div>
     </section>
   );

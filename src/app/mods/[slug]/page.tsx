@@ -185,15 +185,15 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
   if (!mod) {
     return (
       <section className="relative w-full">
-        <div className="mx-auto max-w-7xl px-6 py-24">
-          <div className="border border-zinc-700 bg-zinc-900 p-8 text-center">
-            <div className="text-zinc-50 text-xl font-semibold">Mod not found</div>
-            <p className="mt-2 text-zinc-400 text-sm">Check the link or browse mods.</p>
-            <div className="mt-4">
-              <Link href="/mods" className="border border-emerald-700 px-3 py-1.5 text-sm text-emerald-500 hover:bg-emerald-600 hover:text-black transition">Back to mods →</Link>
+            <div className="mx-auto max-w-7xl px-6 py-24">
+              <div className="border border-zinc-700 bg-zinc-900 p-8 text-center">
+                <div className="text-zinc-50 text-xl font-semibold">Mod not found</div>
+                <p className="mt-2 text-zinc-400 text-sm">Check the link or browse mods.</p>
+                <div className="mt-4">
+                  <Link href="/mods" className="border border-purple-700 px-3 py-1.5 text-sm text-purple-500 hover:bg-purple-600 hover:text-black transition">Back to mods →</Link>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
       </section>
     );
   }
@@ -201,7 +201,7 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
   return (
     <section className="relative w-full">
       <div className="mx-auto max-w-7xl px-6 py-16">
-        <Link href="/mods" className="inline-flex items-center gap-2 text-sm text-emerald-500 hover:text-emerald-400">
+        <Link href="/mods" className="inline-flex items-center gap-2 text-sm text-purple-500 hover:text-purple-400">
           <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
             <path d="M15 19l-7-7 7-7" fill="none" stroke="currentColor" strokeWidth="2" />
           </svg>
@@ -221,7 +221,7 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
               <div className="mt-3 grid grid-cols-3 gap-3 max-w-[680px]">
                 {(mod.gallerySrcs ?? [mod.imageSrc]).slice(0, 6).map((src, i) => (
                   <div key={`${src}-${i}`} className="relative w-full overflow-hidden rounded border border-zinc-700 cursor-pointer">
-                    <div className="absolute inset-0 opacity-0 transition-opacity hover:opacity-10 bg-emerald-500" />
+                    <div className="absolute inset-0 opacity-0 transition-opacity hover:opacity-10 bg-purple-500" />
                     <div className="relative" style={{ aspectRatio: "16 / 9" }}>
                       <Image src={src} alt={`${mod.title} ${i + 1}`} fill className="object-cover" />
                     </div>
@@ -254,7 +254,7 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
             <div className="border border-zinc-700 bg-zinc-900 p-4 space-y-4">
               <div className="flex items-center justify-between">
                 <div className="inline-flex items-center gap-2 text-zinc-50">
-                  <svg viewBox="0 0 24 24" className="h-5 w-5 text-emerald-500" aria-hidden>
+                  <svg viewBox="0 0 24 24" className="h-5 w-5 text-purple-500" aria-hidden>
                     <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="currentColor" />
                   </svg>
                   {mod.rating.toFixed(1)}
@@ -281,9 +281,9 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
               <div className="h-px bg-zinc-800" />
               <div className="flex items-center gap-2 w-full">
                 <div className="relative flex-1">
-                  <button onClick={() => setVersionOpen((v) => !v)} className={`inline-flex w-full items-center justify-between border px-3 py-2 text-sm ${versionOpen ? "border-emerald-700 text-emerald-500" : "border-zinc-700 bg-zinc-900 text-zinc-200"}`}>
+                  <button onClick={() => setVersionOpen((v) => !v)} className={`inline-flex w-full items-center justify-between border px-3 py-2 text-sm ${versionOpen ? "border-purple-700 text-purple-500" : "border-zinc-700 bg-zinc-900 text-zinc-200"}`}>
                     <span>{selectedVersion}</span>
-                    <svg viewBox="0 0 24 24" className={`h-4 w-4 ${versionOpen ? "text-emerald-500 rotate-180" : "text-zinc-400"}`} aria-hidden>
+                    <svg viewBox="0 0 24 24" className={`h-4 w-4 ${versionOpen ? "text-purple-500 rotate-180" : "text-zinc-400"}`} aria-hidden>
                       <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2" />
                     </svg>
                   </button>
@@ -291,16 +291,16 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
                     <div className="absolute left-0 top-full mt-2 z-50 w-full border border-zinc-700 bg-zinc-900">
                       <div className="py-1">
                         {versionList.map((v) => (
-                          <button key={v} onClick={() => { setSelectedVersion(v); setVersionOpen(false); }} className="block w-full text-left px-3 py-2 text-sm text-zinc-200 hover:bg-zinc-800/60 hover:text-emerald-500">
+                          <button key={v} onClick={() => { setSelectedVersion(v); setVersionOpen(false); }} className="block w-full text-left px-3 py-2 text-sm text-zinc-200 hover:bg-zinc-800/60 hover:text-purple-500">
                             {v}
                           </button>
                         ))}
-                        <Link href={`/mods/${slug}?tab=files`} className="block px-3 py-2 text-sm text-emerald-500 hover:text-emerald-400">Files</Link>
+                        <Link href={`/mods/${slug}?tab=files`} className="block px-3 py-2 text-sm text-purple-500 hover:text-purple-400">Files</Link>
                       </div>
                     </div>
                   )}
                 </div>
-                <Link href="#" className="shrink-0 grid place-items-center h-9 w-9 bg-emerald-600 hover:bg-emerald-500">
+                <Link href="#" className="shrink-0 grid place-items-center h-9 w-9 bg-purple-600 hover:bg-purple-500">
                   <svg viewBox="0 0 24 24" className="h-5 w-5 text-black" aria-hidden>
                     <path d="M12 3v10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                     <path d="M8 9l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -309,13 +309,13 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
                 </Link>
               </div>
               <div className="grid grid-cols-2 gap-3">
-                <button className="w-full inline-flex items-center justify-center gap-2 border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 hover:border-emerald-700">
+                <button className="w-full inline-flex items-center justify-center gap-2 border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 hover:border-purple-700">
                   <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden>
                     <path d="M12 21s-7-4.35-7-10a4 4 0 018 0 4 4 0 018 0c0 5.65-7 10-7 10z" fill="none" stroke="currentColor" strokeWidth="2" />
                   </svg>
                   Like
                 </button>
-                <button className="w-full inline-flex items-center justify-center gap-2 border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 hover:border-emerald-700">
+                <button className="w-full inline-flex items-center justify-center gap-2 border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 hover:border-purple-700">
                   <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden>
                     <path d="M12 16V7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                     <path d="M8 11l4-4 4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -329,9 +329,9 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
         </div>
       </div>
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-10 top-24 h-48 w-48 border border-emerald-900/20" />
-        <div className="absolute right-16 top-40 h-56 w-56 border border-emerald-900/20 rotate-45" />
-        <div className="absolute left-24 bottom-24 h-40 w-40 border border-emerald-900/20" />
+        <div className="absolute left-10 top-24 h-48 w-48 border border-purple-900/20" />
+        <div className="absolute right-16 top-40 h-56 w-56 border border-purple-900/20 rotate-45" />
+        <div className="absolute left-24 bottom-24 h-40 w-40 border border-purple-900/20" />
       </div>
     </section>
   );

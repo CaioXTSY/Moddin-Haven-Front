@@ -68,14 +68,14 @@ export default function SignupPage() {
             <button
               type="submit"
               disabled={!canSubmit}
-              className="w-full bg-emerald-600 px-4 py-2 text-sm font-medium text-black hover:bg-emerald-500 disabled:opacity-50"
+              className="w-full bg-purple-600 px-4 py-2 text-sm font-medium text-black hover:bg-purple-500 disabled:opacity-50"
             >
               Create account
             </button>
           </form>
 
           <div className="mt-6 text-sm text-zinc-400">
-            Already have an account? <Link href="/login" className="text-emerald-500 hover:text-emerald-400">Sign in</Link>
+            Already have an account? <Link href="/login" className="text-purple-500 hover:text-purple-400">Sign in</Link>
           </div>
         </div>
       </div>

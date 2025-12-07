@@ -9,7 +9,7 @@ export default function StatsCard({ icon, title, value, description }: Props) {
   return (
     <div className="border border-zinc-700 bg-zinc-900">
       <div className="p-4">
-        <div className="grid place-items-center h-9 w-9 border border-emerald-700 text-emerald-500">
+        <div className="grid place-items-center h-9 w-9 border border-purple-700 text-purple-500">
           {icon}
         </div>
       </div>
@@ -21,4 +21,3 @@ export default function StatsCard({ icon, title, value, description }: Props) {
     </div>
   );
 }
-

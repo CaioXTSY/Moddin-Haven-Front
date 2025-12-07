@@ -42,14 +42,14 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={!canSubmit}
-              className="w-full bg-emerald-600 px-4 py-2 text-sm font-medium text-black hover:bg-emerald-500 disabled:opacity-50"
+              className="w-full bg-purple-600 px-4 py-2 text-sm font-medium text-black hover:bg-purple-500 disabled:opacity-50"
             >
               Sign In
             </button>
           </form>
 
           <div className="mt-6 text-sm text-zinc-400">
-            Don&apos;t have an account? <Link href="/signup" className="text-emerald-500 hover:text-emerald-400">Create one</Link>
+            Don&apos;t have an account? <Link href="/signup" className="text-purple-500 hover:text-purple-400">Create one</Link>
           </div>
         </div>
       </div>

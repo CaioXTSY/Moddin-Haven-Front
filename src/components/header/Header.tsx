@@ -13,7 +13,7 @@ export default function Header() {
             <NavLinks />
           </div>
           <div className="flex items-center gap-3">
-            <Link href="/mods/submit" className="inline-flex border border-emerald-700 px-3 py-1.5 text-sm text-emerald-500 hover:bg-emerald-600 hover:text-black">Submit</Link>
+            <Link href="/mods/submit" className="inline-flex border border-purple-700 px-3 py-1.5 text-sm text-purple-500 hover:bg-purple-600 hover:text-black">Submit</Link>
             <AuthButtons />
           </div>
         </div>

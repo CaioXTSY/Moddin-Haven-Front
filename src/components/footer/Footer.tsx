@@ -5,13 +5,7 @@ export default function Footer() {
     <footer className="w-full border-t border-zinc-800 bg-black">
       <div className="mx-auto max-w-7xl px-6 py-10">
         <div className="flex flex-col items-center gap-6">
-          <div className="flex items-center gap-2">
-            <div className="grid place-items-center h-6 w-6 border border-emerald-700 text-emerald-500">
-              <svg viewBox="0 0 24 24" className="h-3 w-3" aria-hidden>
-                <path d="M4 12h16" stroke="currentColor" strokeWidth="2" />
-                <path d="M8 6l4 4-4 4" stroke="currentColor" strokeWidth="2" />
-              </svg>
-              </div>
+          <div className="flex items-center">
             <span className="text-zinc-200 text-sm">Modding Haven</span>
           </div>
           <nav className="flex items-center gap-6 justify-center">
