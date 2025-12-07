@@ -17,13 +17,13 @@ export default function ShareSection() {
   return (
     <section className="relative w-full">
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-16">
-        <div className="border border-zinc-700 bg-zinc-900 px-6 py-5 flex items-center justify-between">
+        <div className="border border-zinc-700 bg-zinc-900 px-8 py-8 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="grid place-items-center h-8 w-8 border border-zinc-700 text-emerald-500">
+            <div className="grid place-items-center h-10 w-10 border border-zinc-700 text-emerald-500">
               <IconUpload />
             </div>
-            <span className="text-zinc-50 text-lg font-semibold">Share Your Creations</span>
-            <span className="text-zinc-400 text-sm">Publish your mods and reach thousands of GTA players worldwide.</span>
+            <span className="text-zinc-50 text-2xl sm:text-3xl font-bold">Share Your Creations</span>
+            <span className="text-zinc-400 text-sm sm:text-base">Publish your mods and reach thousands of GTA players worldwide.</span>
           </div>
           <Link href="/submit" className="inline-block bg-emerald-600 px-4 py-2 text-sm font-medium text-black hover:bg-emerald-500">Submit Your Mod</Link>
         </div>
