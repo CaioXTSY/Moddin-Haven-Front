@@ -187,10 +187,10 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
       <section className="relative w-full">
         <div className="mx-auto max-w-7xl px-6 py-24">
           <div className="border border-zinc-700 bg-zinc-900 p-8 text-center">
-            <div className="text-zinc-50 text-xl font-semibold">Mod não encontrado</div>
-            <p className="mt-2 text-zinc-400 text-sm">Verifique o link ou navegue pelos mods.</p>
+            <div className="text-zinc-50 text-xl font-semibold">Mod not found</div>
+            <p className="mt-2 text-zinc-400 text-sm">Check the link or browse mods.</p>
             <div className="mt-4">
-              <Link href="/mods" className="border border-emerald-700 px-3 py-1.5 text-sm text-emerald-500 hover:bg-emerald-600 hover:text-black transition">Voltar para mods →</Link>
+              <Link href="/mods" className="border border-emerald-700 px-3 py-1.5 text-sm text-emerald-500 hover:bg-emerald-600 hover:text-black transition">Back to mods →</Link>
             </div>
           </div>
         </div>
