@@ -8,7 +8,7 @@ import DecorativeBoxes from "@/components/hero/DecorativeBoxes";
 export default function Hero() {
   return (
     <section className="relative w-full min-h-[calc(100vh-64px)] flex items-center">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
         <HeroBadge />
         <div className="mt-6">
           <HeroTitle />
