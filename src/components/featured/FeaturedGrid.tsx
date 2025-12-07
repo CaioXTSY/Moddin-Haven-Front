@@ -1,6 +1,6 @@
 import ModCard from "@/components/featured/ModCard";
 
-const base = { title: "Pablo Mod", author: "pablo", category: "categoria pablo" };
+const base = { title: "Pablo Mod", author: "pablo", category: "pablo" };
 const data = [
   { ...base, downloads: "12.5K", rating: "4.8" },
   { ...base, downloads: "8.9K", rating: "4.7" },
@@ -12,7 +12,7 @@ const data = [
 
 export default function FeaturedGrid() {
   return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
       {data.slice(0, 6).map((m, i) => (
         <ModCard key={`${m.title}-${i}`} imageSrc="/img.png" {...m} />
       ))}
