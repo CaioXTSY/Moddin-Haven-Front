@@ -17,15 +17,15 @@ export default function ShareSection() {
   return (
     <section className="relative w-full overflow-hidden">
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-16">
-        <div className="group border border-zinc-700 bg-zinc-900 px-8 py-8 flex items-center justify-between transition-colors hover:border-sapphire-700 hover:bg-zinc-800/60">
+        <div className="group border border-zinc-700 bg-zinc-900 px-8 py-8 flex items-center justify-between transition-colors hover:border-sapphire-700 hover:bg-zinc-800/60 rounded-lg">
           <div className="flex items-center gap-4">
-            <div className="grid place-items-center h-10 w-10 border border-sapphire-700 text-sapphire-500 transition-colors group-hover:border-sapphire-700">
+            <div className="grid place-items-center h-10 w-10 border border-sapphire-700 text-sapphire-500 transition-colors group-hover:border-sapphire-700 rounded-md">
               <IconUpload />
             </div>
             <span className="text-zinc-50 text-2xl sm:text-3xl font-bold">Share Your Creations</span>
             <span className="text-zinc-400 text-sm sm:text-base">Publish your mods and reach thousands of GTA players worldwide.</span>
           </div>
-          <Link href="/mods/submit" className="inline-block bg-sapphire-600 px-4 py-2 text-sm font-medium text-black transition-all hover:bg-sapphire-500 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-sapphire-500/30">Submit Your Mod</Link>
+          <Link href="/mods/submit" className="inline-block bg-sapphire-600 px-4 py-2 text-sm font-medium text-black transition-all hover:bg-sapphire-500 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-sapphire-500/30 rounded-md">Submit Your Mod</Link>
         </div>
       </div>
       

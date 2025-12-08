@@ -6,8 +6,8 @@ type Props = {
 
 export default function HeroStat({ icon, value, label }: Props) {
   return (
-    <div className="group flex items-center gap-4 transition-transform hover:-translate-y-0.5">
-      <div className="grid place-items-center h-8 w-8 border border-purple-700 text-purple-500 transition-colors group-hover:border-purple-600 group-hover:bg-purple-600 group-hover:text-black">
+    <div className="group flex items_center gap-4 transition-transform hover:-translate-y-0.5">
+      <div className="grid place-items-center h-8 w-8 border border-purple-700 text-purple-500 transition-colors group-hover:border-purple-600 group-hover:bg-purple-600 group-hover:text-black rounded-md">
         {icon}
       </div>
       <div>

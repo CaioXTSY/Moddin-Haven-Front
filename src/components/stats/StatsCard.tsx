@@ -36,9 +36,9 @@ const accentMap: Record<NonNullable<Props["accent"]>, { tile: string; icon: stri
 
 export default function StatsCard({ icon, title, value, description, accent = "mauve" }: Props) {
   return (
-    <div className={`group border border-zinc-700 bg-zinc-900 transition-all hover:-translate-y-0.5 hover:shadow-lg ${accentMap[accent].tile}`}>
+    <div className={`group border border-zinc-700 bg-zinc-900 transition-all hover:-translate-y-0.5 hover:shadow-lg ${accentMap[accent].tile} rounded-lg`}>
       <div className="p-4">
-        <div className={`grid place-items-center h-9 w-9 border transition-colors ${accentMap[accent].icon} group-hover:bg-zinc-800/40`}>
+        <div className={`grid place-items-center h-9 w-9 border transition-colors ${accentMap[accent].icon} group-hover:bg-zinc-800/40 rounded-md`}>
           {icon}
         </div>
       </div>
