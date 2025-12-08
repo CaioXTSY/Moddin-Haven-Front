@@ -46,18 +46,18 @@ function IconUser() {
 
 function CategoryTile({ icon, name, count, href }: { icon: React.ReactNode; name: string; count: string; href: string }) {
   return (
-    <Link href={href} className="group block border border-zinc-700 bg-zinc-900 p-5">
+    <Link href={href} className="group block border border-zinc-700 bg-zinc-900 p-5 transition-all hover:-translate-y-0.5 hover:border-purple-700 hover:bg-zinc-800/60 hover:shadow-lg hover:shadow-purple-900/20">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="grid place-items-center h-9 w-9 border border-purple-700 text-purple-500">
+          <div className="grid place-items-center h-9 w-9 border border-purple-700 text-purple-500 transition-colors group-hover:border-purple-600 group-hover:bg-purple-600 group-hover:text-black">
             {icon}
           </div>
           <div>
-            <div className="text-zinc-50 text-lg font-semibold">{name}</div>
-            <div className="text-zinc-500 text-sm">{count} mods</div>
+            <div className="text-zinc-50 text-lg font-semibold transition-colors group-hover:text-purple-400">{name}</div>
+            <div className="text-zinc-500 text-sm transition-colors group-hover:text-zinc-300">{count} mods</div>
           </div>
         </div>
-        <div className="grid place-items-center h-8 w-8 border border-zinc-700 text-zinc-400 transition-colors group-hover:border-purple-700 group-hover:text-purple-500">
+        <div className="grid place-items-center h-8 w-8 border border-zinc-700 text-zinc-400 transition-all group-hover:border-purple-700 group-hover:text-purple-500 group-hover:translate-x-0.5">
           <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
             <path d="M8 5l8 7-8 7" fill="none" stroke="currentColor" strokeWidth="2" />
           </svg>
@@ -98,13 +98,13 @@ export default function CategoriesPage() {
         </div>
 
         <div className="mt-10">
-          <div className="border border-zinc-700 bg-zinc-900 px-4 py-3 flex items-center justify-between">
+          <div className="group border border-zinc-700 bg-zinc-900 px-4 py-3 flex items-center justify-between transition-all hover:border-purple-700 hover:bg-zinc-800/60 hover:-translate-y-0.5 hover:shadow-md hover:shadow-purple-900/20">
             <div className="flex items-center gap-3">
-              <span className="text-zinc-300 text-xs">Community</span>
-              <span className="text-zinc-50 text-sm font-semibold">Submit your mod</span>
-              <span className="hidden sm:inline text-zinc-400 text-xs">Publish in minutes and reach the community.</span>
+              <span className="text-zinc-300 text-xs transition-colors group-hover:text-zinc-200">Community</span>
+              <span className="text-zinc-50 text-sm font-semibold transition-colors group-hover:text-purple-400">Submit your mod</span>
+              <span className="hidden sm:inline text-zinc-400 text-xs transition-colors group-hover:text-zinc-300">Publish in minutes and reach the community.</span>
             </div>
-            <Link href="/submit" className="inline-block bg-purple-600 px-3 py-1.5 text-xs font-medium text-black hover:bg-purple-500">Submit</Link>
+            <Link href="/submit" className="inline-block bg-purple-600 px-3 py-1.5 text-xs font-medium text-black transition-all hover:bg-purple-500 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-purple-900/30">Submit</Link>
           </div>
         </div>
       </div>
