@@ -22,7 +22,7 @@ export default function SignupPage() {
   return (
     <section className="relative w-full min-h-[calc(100vh-56px)] flex items-center">
       <div className="mx-auto max-w-7xl px-6 w-full">
-        <div className="mx-auto w-full max-w-md border border-zinc-700 bg-zinc-900 px-8 py-8">
+        <div className="mx-auto w-full max-w-md border border-zinc-700 bg-zinc-900 px-8 py-8 rounded-xl">
           <h1 className="text-zinc-50 text-3xl font-bold">Sign Up</h1>
           <p className="mt-2 text-zinc-400 text-sm">Create your account to publish and track your mods.</p>
 
@@ -33,7 +33,7 @@ export default function SignupPage() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="username"
-                className="mt-2 w-full border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 focus:outline-none"
+              className="mt-2 w-full border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 focus:outline-none rounded-md"
               />
             </div>
             <div>
@@ -42,7 +42,7 @@ export default function SignupPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your@email.com"
-                className="mt-2 w-full border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 focus:outline-none"
+                className="mt-2 w-full border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 focus:outline-none rounded-md"
               />
             </div>
             <div>
@@ -52,7 +52,7 @@ export default function SignupPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="at least 6 characters"
-                className="mt-2 w-full border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 focus:outline-none"
+                className="mt-2 w-full border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 focus:outline-none rounded-md"
               />
             </div>
             <div>
@@ -62,13 +62,13 @@ export default function SignupPage() {
                 value={confirm}
                 onChange={(e) => setConfirm(e.target.value)}
                 placeholder="repeat your password"
-                className="mt-2 w-full border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 focus:outline-none"
+                className="mt-2 w-full border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 focus:outline-none rounded-md"
               />
             </div>
             <button
               type="submit"
               disabled={!canSubmit}
-              className="w-full bg-mauve-600 px-4 py-2 text-sm font-medium text-black hover:bg-mauve-500 disabled:opacity-50"
+              className="w-full bg-mauve-600 px-4 py-2 text-sm font-medium text-black hover:bg-mauve-500 disabled:opacity-50 rounded-md"
             >
               Create account
             </button>

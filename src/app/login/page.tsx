@@ -15,7 +15,7 @@ export default function LoginPage() {
   return (
     <section className="relative w-full min-h-[calc(100vh-56px)] flex items-center">
       <div className="mx-auto max-w-7xl px-6 w-full">
-        <div className="mx-auto w-full max-w-md border border-zinc-700 bg-zinc-900 px-8 py-8">
+        <div className="mx-auto w-full max-w-md border border-zinc-700 bg-zinc-900 px-8 py-8 rounded-xl">
           <h1 className="text-zinc-50 text-3xl font-bold">Login</h1>
           <p className="mt-2 text-zinc-400 text-sm">Access your account to submit and manage mods.</p>
 
@@ -26,7 +26,7 @@ export default function LoginPage() {
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
                 placeholder="your@email.com"
-                className="mt-2 w-full border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 focus:outline-none"
+                className="mt-2 w-full border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 focus:outline-none rounded-md"
               />
             </div>
             <div>
@@ -36,13 +36,13 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="at least 6 characters"
-                className="mt-2 w-full border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 focus:outline-none"
+                className="mt-2 w-full border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 focus:outline-none rounded-md"
               />
             </div>
             <button
               type="submit"
               disabled={!canSubmit}
-              className="w-full bg-purple-600 px-4 py-2 text-sm font-medium text-black hover:bg-purple-500 disabled:opacity-50"
+              className="w-full bg-purple-600 px-4 py-2 text-sm font-medium text-black hover:bg-purple-500 disabled:opacity-50 rounded-md"
             >
               Sign In
             </button>
