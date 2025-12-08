@@ -71,10 +71,10 @@ const accentTileHoverMap: Record<string, string> = {
 
 function CategoryTile({ icon, name, count, href, accent }: { icon: React.ReactNode; name: string; count: string; href: string; accent: keyof typeof accentIconMap }) {
   return (
-    <Link href={href} className={`group block border border-zinc-700 bg-zinc-900 p-5 transition-all hover:-translate-y-0.5 hover:bg-zinc-800/60 hover:shadow-lg ${accentTileHoverMap[accent]}`}>
+    <Link href={href} className={`group block border border-zinc-700 bg-zinc-900 p-5 rounded-lg transition-all hover:-translate-y-0.5 hover:bg-zinc-800/60 hover:shadow-lg ${accentTileHoverMap[accent]}`}>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className={`grid place-items-center h-9 w-9 border transition-colors ${accentIconMap[accent]} group-hover:bg-zinc-800/40`}>
+          <div className={`grid place-items-center h-9 w-9 border rounded-md transition-colors ${accentIconMap[accent]} group-hover:bg-zinc-800/40`}>
             {icon}
           </div>
           <div>
@@ -82,7 +82,7 @@ function CategoryTile({ icon, name, count, href, accent }: { icon: React.ReactNo
             <div className="text-zinc-500 text-sm transition-colors group-hover:text-zinc-300">{count} mods</div>
           </div>
         </div>
-        <div className={`grid place-items-center h-8 w-8 border border-zinc-700 text-zinc-400 transition-all ${accentArrowHoverMap[accent]} group-hover:translate-x-0.5`}>
+        <div className={`grid place-items-center h-8 w-8 border border-zinc-700 text-zinc-400 rounded-md transition-all ${accentArrowHoverMap[accent]} group-hover:translate-x-0.5`}>
           <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
             <path d="M8 5l8 7-8 7" fill="none" stroke="currentColor" strokeWidth="2" />
           </svg>
@@ -111,7 +111,7 @@ export default function CategoriesPage() {
             <div className="mt-3 h-px w-16 bg-sapphire-700" />
             <p className="mt-3 text-zinc-400">Choose a category to explore recommended and popular mods.</p>
           </div>
-          <Link href="/mods" className="border border-sapphire-700 px-2 py-1 text-sm text-sapphire-500 hover:bg-sapphire-600 hover:text-black transition">View all mods →</Link>
+          <Link href="/mods" className="border border-sapphire-700 px-3 py-1.5 text-sm text-sapphire-500 hover:bg-sapphire-600 hover:text-black rounded-md transition">View all mods →</Link>
         </div>
 
         
@@ -123,13 +123,13 @@ export default function CategoriesPage() {
         </div>
 
         <div className="mt-10">
-          <div className="group border border-zinc-700 bg-zinc-900 px-4 py-3 flex items-center justify-between transition-all hover:border-mauve-700 hover:bg-zinc-800/60 hover:-translate-y-0.5 hover:shadow-md">
+          <div className="group border border-zinc-700 bg-zinc-900 px-4 py-3 rounded-lg flex items-center justify-between transition-all hover:border-mauve-700 hover:bg-zinc-800/60 hover:-translate-y-0.5 hover:shadow-md">
             <div className="flex items-center gap-3">
               <span className="text-zinc-300 text-xs transition-colors group-hover:text-zinc-200">Community</span>
               <span className="text-zinc-50 text-sm font-semibold transition-colors group-hover:text-mauve-600">Submit your mod</span>
               <span className="hidden sm:inline text-zinc-400 text-xs transition-colors group-hover:text-zinc-300">Publish in minutes and reach the community.</span>
             </div>
-            <Link href="/submit" className="inline-block bg-mauve-600 px-3 py-1.5 text-xs font-medium text-black transition-all hover:bg-mauve-500 hover:-translate-y-0.5 hover:shadow-lg">Submit</Link>
+            <Link href="/submit" className="inline-block bg-mauve-600 px-3 py-1.5 text-xs font-medium text-black rounded-md transition-all hover:bg-mauve-500 hover:-translate-y-0.5 hover:shadow-lg">Submit</Link>
           </div>
         </div>
       </div>
