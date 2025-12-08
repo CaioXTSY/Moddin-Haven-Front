@@ -100,7 +100,7 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
 
         <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-3">
           <div className="md:col-span-2 space-y-6">
-            <div className="border border-zinc-700 bg-zinc-900 overflow-hidden rounded max-w-[680px]">
+            <div className="border border-zinc-700 bg-zinc-900 overflow-hidden rounded max-w-[680px] transition-all hover:border-purple-700 hover:shadow-md hover:shadow-purple-900/20">
               <div className="relative w-full" style={{ aspectRatio: "16 / 9" }}>
                 <Image src={mod.imageSrc} alt={mod.title} fill sizes="(min-width: 768px) 60vw, 100vw" className="object-cover" />
               </div>
@@ -110,8 +110,8 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
               <div className="text-zinc-50 text-xl font-semibold">Gallery</div>
               <div className="mt-3 grid grid-cols-3 gap-3 max-w-[680px]">
                 {(mod.gallerySrcs ?? [mod.imageSrc]).slice(0, 6).map((src, i) => (
-                  <div key={`${src}-${i}`} className="relative w-full overflow-hidden rounded border border-zinc-700 cursor-pointer">
-                    <div className="absolute inset-0 opacity-0 transition-opacity hover:opacity-10 bg-purple-500" />
+                  <div key={`${src}-${i}`} className="group relative w-full overflow-hidden rounded border border-zinc-700 cursor-pointer transition-all hover:-translate-y-0.5 hover:border-purple-700 hover:shadow-md hover:shadow-purple-900/20">
+                    <div className="absolute inset-0 opacity-0 transition-opacity group-hover:opacity-10 bg-purple-500" />
                     <div className="relative" style={{ aspectRatio: "16 / 9" }}>
                       <Image src={src} alt={`${mod.title} ${i + 1}`} fill className="object-cover" />
                     </div>
@@ -127,7 +127,7 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
 
             <div>
               <div className="text-zinc-50 text-xl font-semibold">Changelog</div>
-              <div className="mt-3 border border-zinc-700 bg-zinc-900 p-4 text-sm text-zinc-300">
+              <div className="mt-3 border border-zinc-700 bg-zinc-900 p-4 text-sm text-zinc-300 transition-all hover:border-purple-700 hover:shadow-sm hover:shadow-purple-900/20">
                 {(mod.changelog ?? []).slice(0, 1).map((c) => (
                   <div key={c.version}>{c.version} - {c.notes}</div>
                 ))}
@@ -141,7 +141,7 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
               <div className="mt-1 text-zinc-400 text-sm">by {mod.author}</div>
             </div>
 
-            <div className="border border-zinc-700 bg-zinc-900 p-4 space-y-4">
+            <div className="border border-zinc-700 bg-zinc-900 p-4 space-y-4 transition-all hover:border-purple-700 hover:shadow-md hover:shadow-purple-900/20">
               <div className="flex items-center justify-between">
                 <div className="inline-flex items-center gap-2 text-zinc-50">
                   <svg viewBox="0 0 24 24" className="h-5 w-5 text-purple-500" aria-hidden>
@@ -171,9 +171,9 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
               <div className="h-px bg-zinc-800" />
               <div className="flex items-center gap-2 w-full">
                 <div className="relative flex-1">
-                  <button onClick={() => setVersionOpen((v) => !v)} className={`inline-flex w-full items-center justify-between border px-3 py-2 text-sm ${versionOpen ? "border-purple-700 text-purple-500" : "border-zinc-700 bg-zinc-900 text-zinc-200"}`}>
+                  <button onClick={() => setVersionOpen((v) => !v)} className={`inline-flex w-full items-center justify-between border px-3 py-2 text-sm transition-all hover:border-purple-700 ${versionOpen ? "border-purple-700 text-purple-500" : "border-zinc-700 bg-zinc-900 text-zinc-200"}`}>
                     <span>{selectedVersion}</span>
-                    <svg viewBox="0 0 24 24" className={`h-4 w-4 ${versionOpen ? "text-purple-500 rotate-180" : "text-zinc-400"}`} aria-hidden>
+                    <svg viewBox="0 0 24 24" className={`h-4 w-4 transition-colors ${versionOpen ? "text-purple-500 rotate-180" : "text-zinc-400"}`} aria-hidden>
                       <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2" />
                     </svg>
                   </button>
@@ -190,7 +190,7 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
                     </div>
                   )}
                 </div>
-                <Link href="#" className="shrink-0 grid place-items-center h-9 w-9 bg-purple-600 hover:bg-purple-500">
+                <Link href="#" className="shrink-0 grid place-items-center h-9 w-9 bg-purple-600 transition-all hover:bg-purple-500 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-purple-900/30">
                   <svg viewBox="0 0 24 24" className="h-5 w-5 text-black" aria-hidden>
                     <path d="M12 3v10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                     <path d="M8 9l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -199,13 +199,13 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
                 </Link>
               </div>
               <div className="grid grid-cols-2 gap-3">
-                <button className="w-full inline-flex items-center justify-center gap-2 border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 hover:border-purple-700">
+                <button className="w-full inline-flex items-center justify-center gap-2 border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 transition-all hover:border-purple-700 hover:-translate-y-0.5 hover:shadow-md hover:shadow-purple-900/20">
                   <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden>
                     <path d="M12 21s-7-4.35-7-10a4 4 0 018 0 4 4 0 018 0c0 5.65-7 10-7 10z" fill="none" stroke="currentColor" strokeWidth="2" />
                   </svg>
                   Like
                 </button>
-                <button className="w-full inline-flex items-center justify-center gap-2 border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 hover:border-purple-700">
+                <button className="w-full inline-flex items-center justify-center gap-2 border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 transition-all hover:border-purple-700 hover:-translate-y-0.5 hover:shadow-md hover:shadow-purple-900/20">
                   <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden>
                     <path d="M12 16V7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                     <path d="M8 11l4-4 4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
