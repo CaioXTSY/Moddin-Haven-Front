@@ -105,9 +105,9 @@ export default function SubmitModPage() {
         <div className="flex items-end justify-between">
           <div>
             <h1 className="text-zinc-50 text-3xl sm:text-4xl font-bold">Submit Mod</h1>
-            <div className="mt-3 h-px w-16 bg-purple-700" />
+            <div className="mt-3 h-px w-16 bg-mauve-700" />
             <p className="mt-3 text-zinc-400">Fill in your mod details and upload files.</p>
-            <Link href="/mods" className="mt-4 inline-flex items-center gap-2 text-sm text-purple-500 hover:text-purple-400">
+            <Link href="/mods" className="mt-4 inline-flex items-center gap-2 text-sm text-blue-500 hover:text-blue-400">
               <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
                 <path d="M15 19l-7-7 7-7" fill="none" stroke="currentColor" strokeWidth="2" />
               </svg>
@@ -145,7 +145,7 @@ export default function SubmitModPage() {
                   <label className="text-xs text-zinc-400">Tags</label>
                   <div className="mt-1 flex items-center border border-zinc-700 bg-zinc-900 px-2 py-2">
                     <input value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addTag(); } }} placeholder="Type and press Enter" className="w-full bg-transparent text-sm text-zinc-200 placeholder:text-zinc-500 focus:outline-none" />
-                    <button type="button" onClick={addTag} className="ml-2 border border-purple-700 px-2 py-1 text-xs text-purple-500 hover:bg-purple-600 hover:text-black">Add</button>
+                    <button type="button" onClick={addTag} className="ml-2 border border-peach-700 px-2 py-1 text-xs text-peach-500 hover:bg-peach-600 hover:text-black">Add</button>
                   </div>
                   {data.tags.length > 0 && (
                     <div className="mt-2 flex flex-wrap gap-2">
@@ -282,11 +282,7 @@ export default function SubmitModPage() {
           </aside>
         </form>
       </div>
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-10 top-24 h-48 w-48 border border-purple-900/20" />
-        <div className="absolute right-16 top-40 h-56 w-56 border border-purple-900/20 rotate-45" />
-        <div className="absolute left-24 bottom-24 h-40 w-40 border border-purple-900/20" />
-      </div>
+      
     </section>
   );
 }

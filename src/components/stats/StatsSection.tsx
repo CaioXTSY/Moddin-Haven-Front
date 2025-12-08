@@ -45,16 +45,13 @@ export default function StatsSection() {
           <p className="mt-2 text-zinc-400">The Modding Haven community keeps growing</p>
         </div>
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
-          <StatsCard icon={<IconChart />} title="Active Mods" value="2,500+" description="Community created modifications" />
-          <StatsCard icon={<IconUsers />} title="Community Members" value="85K+" description="Modders and enthusiasts worldwide" />
-          <StatsCard icon={<IconBolt />} title="Total Downloads" value="500K+" description="Installations across all platforms" />
-          <StatsCard icon={<IconHeart />} title="Avg. Rating" value="4.7★" description="Community satisfaction score" />
+          <StatsCard accent="sapphire" icon={<IconChart />} title="Active Mods" value="2,500+" description="Community created modifications" />
+          <StatsCard accent="green" icon={<IconUsers />} title="Community Members" value="85K+" description="Modders and enthusiasts worldwide" />
+          <StatsCard accent="peach" icon={<IconBolt />} title="Total Downloads" value="500K+" description="Installations across all platforms" />
+          <StatsCard accent="pink" icon={<IconHeart />} title="Avg. Rating" value="4.7★" description="Community satisfaction score" />
         </div>
       </div>
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-12 top-10 h-56 w-56 border border-purple-900/20" />
-        <div className="absolute right-16 top-40 h-48 w-48 border border-purple-900/20 rotate-45" />
-      </div>
+      
     </section>
   );
 }

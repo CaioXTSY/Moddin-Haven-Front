@@ -3,7 +3,7 @@ import HeroTitle from "@/components/hero/HeroTitle";
 import HeroDescription from "@/components/hero/HeroDescription";
 import HeroActions from "@/components/hero/HeroActions";
 import HeroStats from "@/components/hero/HeroStats";
-import DecorativeBoxes from "@/components/hero/DecorativeBoxes";
+ 
 
 export default function Hero() {
   return (
@@ -21,7 +21,7 @@ export default function Hero() {
         </div>
         <HeroStats />
       </div>
-      <DecorativeBoxes />
+      
     </section>
   );
 }

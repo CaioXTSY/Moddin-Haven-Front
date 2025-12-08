@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import DecorativeBoxes from "@/components/hero/DecorativeBoxes";
+ 
 
 export default function LoginPage() {
   const [identifier, setIdentifier] = useState("");
@@ -53,7 +53,7 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-      <DecorativeBoxes />
+      
     </section>
   );
 }

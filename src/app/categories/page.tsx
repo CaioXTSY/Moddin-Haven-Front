@@ -44,20 +44,45 @@ function IconUser() {
   );
 }
 
-function CategoryTile({ icon, name, count, href }: { icon: React.ReactNode; name: string; count: string; href: string }) {
+const accentIconMap: Record<string, string> = {
+  sapphire: "border-sapphire-700 text-sapphire-500",
+  red: "border-red-700 text-red-500",
+  peach: "border-peach-700 text-peach-500",
+  blue: "border-blue-700 text-blue-500",
+  teal: "border-teal-700 text-teal-500",
+  rosewater: "border-rosewater-700 text-rosewater-500",
+};
+const accentArrowHoverMap: Record<string, string> = {
+  sapphire: "group-hover:border-sapphire-700 group-hover:text-sapphire-500",
+  red: "group-hover:border-red-700 group-hover:text-red-500",
+  peach: "group-hover:border-peach-700 group-hover:text-peach-500",
+  blue: "group-hover:border-blue-700 group-hover:text-blue-500",
+  teal: "group-hover:border-teal-700 group-hover:text-teal-500",
+  rosewater: "group-hover:border-rosewater-700 group-hover:text-rosewater-500",
+};
+const accentTileHoverMap: Record<string, string> = {
+  sapphire: "hover:border-sapphire-700 hover:shadow-sapphire-500/20",
+  red: "hover:border-red-700 hover:shadow-red-500/20",
+  peach: "hover:border-peach-700 hover:shadow-peach-500/20",
+  blue: "hover:border-blue-700 hover:shadow-blue-500/20",
+  teal: "hover:border-teal-700 hover:shadow-teal-500/20",
+  rosewater: "hover:border-rosewater-700 hover:shadow-rosewater-500/20",
+};
+
+function CategoryTile({ icon, name, count, href, accent }: { icon: React.ReactNode; name: string; count: string; href: string; accent: keyof typeof accentIconMap }) {
   return (
-    <Link href={href} className="group block border border-zinc-700 bg-zinc-900 p-5 transition-all hover:-translate-y-0.5 hover:border-purple-700 hover:bg-zinc-800/60 hover:shadow-lg hover:shadow-purple-900/20">
+    <Link href={href} className={`group block border border-zinc-700 bg-zinc-900 p-5 transition-all hover:-translate-y-0.5 hover:bg-zinc-800/60 hover:shadow-lg ${accentTileHoverMap[accent]}`}>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="grid place-items-center h-9 w-9 border border-purple-700 text-purple-500 transition-colors group-hover:border-purple-600 group-hover:bg-purple-600 group-hover:text-black">
+          <div className={`grid place-items-center h-9 w-9 border transition-colors ${accentIconMap[accent]} group-hover:bg-zinc-800/40`}>
             {icon}
           </div>
           <div>
-            <div className="text-zinc-50 text-lg font-semibold transition-colors group-hover:text-purple-400">{name}</div>
+            <div className="text-zinc-50 text-lg font-semibold transition-colors group-hover:text-zinc-100">{name}</div>
             <div className="text-zinc-500 text-sm transition-colors group-hover:text-zinc-300">{count} mods</div>
           </div>
         </div>
-        <div className="grid place-items-center h-8 w-8 border border-zinc-700 text-zinc-400 transition-all group-hover:border-purple-700 group-hover:text-purple-500 group-hover:translate-x-0.5">
+        <div className={`grid place-items-center h-8 w-8 border border-zinc-700 text-zinc-400 transition-all ${accentArrowHoverMap[accent]} group-hover:translate-x-0.5`}>
           <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
             <path d="M8 5l8 7-8 7" fill="none" stroke="currentColor" strokeWidth="2" />
           </svg>
@@ -68,12 +93,12 @@ function CategoryTile({ icon, name, count, href }: { icon: React.ReactNode; name
 }
 
 const categories = [
-  { name: "Vehicles", count: 324, icon: <IconVehicle />, slug: "vehicles" },
-  { name: "Weapons", count: 187, icon: <IconWeapon />, slug: "weapons" },
-  { name: "Graphics", count: 156, icon: <IconGraphics />, slug: "graphics" },
-  { name: "Scripting", count: 98, icon: <IconCode />, slug: "scripting" },
-  { name: "Tools", count: 76, icon: <IconTool />, slug: "tools" },
-  { name: "Characters", count: 213, icon: <IconUser />, slug: "characters" },
+  { name: "Vehicles", count: 324, icon: <IconVehicle />, slug: "vehicles", accent: "sapphire" },
+  { name: "Weapons", count: 187, icon: <IconWeapon />, slug: "weapons", accent: "red" },
+  { name: "Graphics", count: 156, icon: <IconGraphics />, slug: "graphics", accent: "peach" },
+  { name: "Scripting", count: 98, icon: <IconCode />, slug: "scripting", accent: "blue" },
+  { name: "Tools", count: 76, icon: <IconTool />, slug: "tools", accent: "teal" },
+  { name: "Characters", count: 213, icon: <IconUser />, slug: "characters", accent: "rosewater" },
 ];
 
 export default function CategoriesPage() {
@@ -83,36 +108,32 @@ export default function CategoriesPage() {
         <div className="flex items-end justify-between">
           <div>
             <h1 className="text-zinc-50 text-3xl sm:text-4xl font-bold">Browse by Category</h1>
-            <div className="mt-3 h-px w-16 bg-purple-700" />
+            <div className="mt-3 h-px w-16 bg-sapphire-700" />
             <p className="mt-3 text-zinc-400">Choose a category to explore recommended and popular mods.</p>
           </div>
-          <Link href="/mods" className="border border-purple-700 px-2 py-1 text-sm text-purple-500 hover:bg-purple-600 hover:text-black transition">View all mods →</Link>
+          <Link href="/mods" className="border border-sapphire-700 px-2 py-1 text-sm text-sapphire-500 hover:bg-sapphire-600 hover:text-black transition">View all mods →</Link>
         </div>
 
         
 
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
           {categories.map((c) => (
-            <CategoryTile key={c.slug} icon={c.icon} name={c.name} count={String(c.count)} href={`/categories/${c.slug}`} />
+            <CategoryTile key={c.slug} icon={c.icon} name={c.name} count={String(c.count)} href={`/categories/${c.slug}`} accent={c.accent} />
           ))}
         </div>
 
         <div className="mt-10">
-          <div className="group border border-zinc-700 bg-zinc-900 px-4 py-3 flex items-center justify-between transition-all hover:border-purple-700 hover:bg-zinc-800/60 hover:-translate-y-0.5 hover:shadow-md hover:shadow-purple-900/20">
+          <div className="group border border-zinc-700 bg-zinc-900 px-4 py-3 flex items-center justify-between transition-all hover:border-mauve-700 hover:bg-zinc-800/60 hover:-translate-y-0.5 hover:shadow-md">
             <div className="flex items-center gap-3">
               <span className="text-zinc-300 text-xs transition-colors group-hover:text-zinc-200">Community</span>
-              <span className="text-zinc-50 text-sm font-semibold transition-colors group-hover:text-purple-400">Submit your mod</span>
+              <span className="text-zinc-50 text-sm font-semibold transition-colors group-hover:text-mauve-600">Submit your mod</span>
               <span className="hidden sm:inline text-zinc-400 text-xs transition-colors group-hover:text-zinc-300">Publish in minutes and reach the community.</span>
             </div>
-            <Link href="/submit" className="inline-block bg-purple-600 px-3 py-1.5 text-xs font-medium text-black transition-all hover:bg-purple-500 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-purple-900/30">Submit</Link>
+            <Link href="/submit" className="inline-block bg-mauve-600 px-3 py-1.5 text-xs font-medium text-black transition-all hover:bg-mauve-500 hover:-translate-y-0.5 hover:shadow-lg">Submit</Link>
           </div>
         </div>
       </div>
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-10 top-24 h-48 w-48 border border-purple-900/20" />
-        <div className="absolute right-16 top-40 h-56 w-56 border border-purple-900/20 rotate-45" />
-        <div className="absolute left-24 bottom-24 h-40 w-40 border border-purple-900/20" />
-      </div>
+      
     </section>
   );
 }

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import FeaturedGrid from "@/components/featured/FeaturedGrid";
-import FeaturedDecorations from "@/components/featured/FeaturedDecorations";
+ 
 
 export default function FeaturedSection() {
   return (
@@ -18,7 +18,7 @@ export default function FeaturedSection() {
           <FeaturedGrid />
         </div>
       </div>
-      <FeaturedDecorations />
+      
     </section>
   );
 }

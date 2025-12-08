@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import DecorativeBoxes from "@/components/hero/DecorativeBoxes";
+ 
 
 export default function SignupPage() {
   const [username, setUsername] = useState("");
@@ -68,18 +68,18 @@ export default function SignupPage() {
             <button
               type="submit"
               disabled={!canSubmit}
-              className="w-full bg-purple-600 px-4 py-2 text-sm font-medium text-black hover:bg-purple-500 disabled:opacity-50"
+              className="w-full bg-mauve-600 px-4 py-2 text-sm font-medium text-black hover:bg-mauve-500 disabled:opacity-50"
             >
               Create account
             </button>
           </form>
 
           <div className="mt-6 text-sm text-zinc-400">
-            Already have an account? <Link href="/login" className="text-purple-500 hover:text-purple-400">Sign in</Link>
+            Already have an account? <Link href="/login" className="text-sapphire-500 hover:text-sapphire-600">Sign in</Link>
           </div>
         </div>
       </div>
-      <DecorativeBoxes />
+      
     </section>
   );
 }

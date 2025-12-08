@@ -218,11 +218,7 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
           </aside>
         </div>
       </div>
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-10 top-24 h-48 w-48 border border-purple-900/20" />
-        <div className="absolute right-16 top-40 h-56 w-56 border border-purple-900/20 rotate-45" />
-        <div className="absolute left-24 bottom-24 h-40 w-40 border border-purple-900/20" />
-      </div>
+      
     </section>
   );
 }
