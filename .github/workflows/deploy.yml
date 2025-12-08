@@ -1,9 +1,10 @@
-name: Deploy Modding Haven to VPS
+name: Full clean & deploy Modding-Haven-UI via sshpass
 
 on:
   push:
     branches:
       - main
+      - master
   workflow_dispatch:
 
 jobs:
@@ -11,48 +12,63 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Node.js & Cache npm
+        uses: actions/setup-node@v3
         with:
-          node-version: "20"
-          cache: "npm"
+          node-version: '18'
+          cache: 'npm'
 
-      - name: Install dependencies & Build
+      - name: Install dependencies only
         run: |
           npm ci
-          npm run build
 
-      - name: Install sshpass
-        run: sudo apt-get update && sudo apt-get install -y sshpass
+      - name: Install sshpass and rsync
+        run: sudo apt-get update && sudo apt-get install -y sshpass rsync
 
-      - name: Deploy to VPS
-        env:
-          SERVER_USER: ${{ secrets.SERVER_USER }}
-          SERVER_IP: ${{ secrets.SERVER_IP }}
-          SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
-          REMOTE_DIR: /www/wwwroot/modding-haven-front
-          PM2_APP_NAME: modding-haven-front
-          PORT: 3456
+      - name: Create directory and clean remote files (keep .env)
         run: |
-          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP \
-            "pm2 delete $PM2_APP_NAME 2>/dev/null || true && \
-             pm2 delete modding-haven 2>/dev/null || true && \
-             fuser -k $PORT/tcp 2>/dev/null || true && \
-             rm -rf $REMOTE_DIR && \
-             mkdir -p $REMOTE_DIR"
+          sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
+            "mkdir -p /www/wwwroot && \
+             mkdir -p /www/wwwroot/Modding-Haven-UI && \
+             cd /www/wwwroot/Modding-Haven-UI && \
+             echo '--- Diretório atual: \$(pwd) ---' && \
+             ls -la || true && \
+             echo '--- Limpando arquivos antigos (preservando .env) ---' && \
+             find . -mindepth 1 -maxdepth 1 ! -name '.env' -exec rm -rf {} + || true"
 
-          sshpass -p "$SERVER_PASSWORD" scp -o StrictHostKeyChecking=no -r \
-            .next public package.json package-lock.json \
-            $SERVER_USER@$SERVER_IP:$REMOTE_DIR
+      - name: Copy source code to server
+        run: |
+          sshpass -p "${{ secrets.SERVER_PASSWORD }}" \
+            rsync -avz --exclude 'node_modules' --exclude '.git' --exclude 'dist' --exclude '.next' --exclude 'out' \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            ./ \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }}:/www/wwwroot/Modding-Haven-UI/
 
-          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "
-            cd $REMOTE_DIR && 
-            npm ci --omit=dev && 
-            
-            # Inicia apenas este app
-            NODE_ENV=production pm2 start 'npm run start -- -p $PORT -H 127.0.0.1' --name $PM2_APP_NAME --cwd $REMOTE_DIR --update-env && 
-            pm2 save && 
-            echo '✅ Deploy concluído: $PM2_APP_NAME reiniciado na porta $PORT'
-          "
+      - name: Build on server and deploy with PM2
+        run: |
+          sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} \
+            "cd /www/wwwroot/Modding-Haven-UI && \
+             echo '--- Instalando dependências no servidor ---' && \
+             npm ci && \
+             echo '--- Fazendo build ---' && \
+             npm run build && \
+             echo '--- Configurando permissões ---' && \
+             chmod -R 755 . && \
+             echo '--- Garantindo PM2 instalado ---' && \
+             (command -v pm2 >/dev/null 2>&1 || npm i -g pm2) && \
+             echo '--- Parando PM2 anterior ---' && \
+             pm2 delete Modding-Haven-UI || true && \
+             echo '--- Iniciando Next.js com PM2 ---' && \
+             pm2 start npm --name Modding-Haven-UI -- start -- -p 3556 && \
+             echo '--- Status do PM2 ---' && \
+             pm2 list && \
+             echo '--- Testando conexão local ---' && \
+             sleep 3 && \
+             curl -I http://localhost:3556 || echo '⚠️ Não conseguiu conectar localmente' && \
+             echo '--- Verificando se porta está aberta ---' && \
+             netstat -tlnp | grep :3556 || echo '⚠️ Porta 3556 não encontrada' && \
+             echo '✅ Deploy concluído com sucesso'"
