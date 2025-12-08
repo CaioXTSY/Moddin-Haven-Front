@@ -188,7 +188,7 @@ function ModsContent() {
                   <button onClick={() => { applyParams({ category: "" }); }} className="text-xs text-purple-500">Clear</button>
                 )}
               </div>
-              <div className="mt-3 flex items-center border border-zinc-700 bg-zinc-800 px-2 py-1">
+              <div className="mt-3 flex items-center border border-zinc-700 bg-zinc-800 px-2 py-1 transition-all hover:border-purple-700 hover:bg-zinc-800/80 hover:shadow-sm hover:shadow-purple-900/20">
                 <svg viewBox="0 0 24 24" className="h-4 w-4 text-zinc-400" aria-hidden>
                   <path fill="currentColor" d="M10 4a6 6 0 104.472 10.07l4.229 4.229a1 1 0 101.414-1.415l-4.228-4.228A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z" />
                 </svg>
@@ -200,26 +200,26 @@ function ModsContent() {
                 />
               </div>
               <div className="mt-3 space-y-2">
-                <button onClick={() => { applyParams({ category: "", page: "1" }); }} className={`flex w-full items-center justify-between border px-3 py-2 text-sm ${selectedCategoryParam === "" ? "border-purple-700 text-purple-500" : "border-zinc-700 text-zinc-300"}`}>
+                <button onClick={() => { applyParams({ category: "", page: "1" }); }} className={`group flex w-full items-center justify-between border px-3 py-2 text-sm transition-all hover:-translate-y-0.5 hover:border-purple-700 ${selectedCategoryParam === "" ? "border-purple-700 text-purple-500" : "border-zinc-700 text-zinc-300"}`}>
                   <div className="flex items-center gap-3">
-                    <div className="grid place-items-center h-6 w-6 border border-zinc-700 text-purple-500">
+                    <div className="grid place-items-center h-6 w-6 border border-zinc-700 text-purple-500 transition-colors group-hover:border-purple-700 group-hover:bg-purple-600 group-hover:text-black">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
                         <path d="M8 5l8 7-8 7" fill="none" stroke="currentColor" strokeWidth="2" />
                       </svg>
                     </div>
-                    <span>All</span>
+                    <span className="transition-colors group-hover:text-purple-400">All</span>
                   </div>
-                  <span className="text-xs text-zinc-400">{allMods.length}</span>
+                  <span className="text-xs text-zinc-400 transition-colors group-hover:text-zinc-200">{allMods.length}</span>
                 </button>
                 {filteredCategories.map((c) => (
-                  <button key={c.slug} onClick={() => { applyParams({ category: c.slug, page: "1" }); }} className={`flex w-full items-center justify-between border px-3 py-2 text-sm ${selectedCategoryParam === c.slug ? "border-purple-700 text-purple-500" : "border-zinc-700 text-zinc-300"}`}>
+                  <button key={c.slug} onClick={() => { applyParams({ category: c.slug, page: "1" }); }} className={`group flex w-full items-center justify-between border px-3 py-2 text-sm transition-all hover:-translate-y-0.5 hover:border-purple-700 ${selectedCategoryParam === c.slug ? "border-purple-700 text-purple-500" : "border-zinc-700 text-zinc-300"}`}>
                     <div className="flex items-center gap-3">
-                      <div className={`grid place-items-center h-6 w-6 border ${selectedCategoryParam === c.slug ? "border-purple-700 text-purple-500" : "border-zinc-700 text-zinc-400"}`}>
+                      <div className={`grid place-items-center h-6 w-6 border transition-colors ${selectedCategoryParam === c.slug ? "border-purple-700 text-purple-500" : "border-zinc-700 text-zinc-400"} group-hover:border-purple-700 group-hover:bg-purple-600 group-hover:text-black`}>
                         {c.icon}
                       </div>
-                      <span>{c.name}</span>
+                      <span className="transition-colors group-hover:text-purple-400">{c.name}</span>
                     </div>
-                    <span className="text-xs text-zinc-400">{counts[c.slug] ?? 0}</span>
+                    <span className="text-xs text-zinc-400 transition-colors group-hover:text-zinc-200">{counts[c.slug] ?? 0}</span>
                   </button>
                 ))}
               </div>
@@ -228,7 +228,7 @@ function ModsContent() {
 
           <div className="md:col-span-3">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <div className="flex-1 flex items-center border border-zinc-700 bg-zinc-900 px-3 py-2 text-zinc-200">
+              <div className="group flex-1 flex items-center border border-zinc-700 bg-zinc-900 px-3 py-2 text-zinc-200 transition-all hover:border-purple-700 hover:shadow-sm hover:shadow-purple-900/20">
                 <svg aria-hidden viewBox="0 0 24 24" className="h-5 w-5 text-zinc-400">
                   <path fill="currentColor" d="M10 4a6 6 0 104.472 10.07l4.229 4.229a1 1 0 101.414-1.415l-4.228-4.228A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z" />
                 </svg>
@@ -246,7 +246,7 @@ function ModsContent() {
                   <select
                     value={sortParam}
                     onChange={(e) => { applyParams({ sort: e.target.value, page: "1" }); }}
-                    className="border border-zinc-700 bg-zinc-900 px-2 py-2 text-sm text-zinc-200"
+                    className="border border-zinc-700 bg-zinc-900 px-2 py-2 text-sm text-zinc-200 transition-colors hover:border-purple-700"
                   >
                     <option value="popular">Popular</option>
                     <option value="top">Top Rated</option>
@@ -258,7 +258,7 @@ function ModsContent() {
                   <select
                     value={String(viewParam)}
                     onChange={(e) => { applyParams({ view: e.target.value, page: "1" }); }}
-                    className="border border-zinc-700 bg-zinc-900 px-2 py-2 text-sm text-zinc-200"
+                    className="border border-zinc-700 bg-zinc-900 px-2 py-2 text-sm text-zinc-200 transition-colors hover:border-purple-700"
                   >
                     <option value="10">10</option>
                     <option value="20">20</option>
@@ -272,22 +272,20 @@ function ModsContent() {
 
             <div className="mt-6 space-y-4">
               {pageItems.map((m, i) => (
-                <div key={`${m.title}-${m.author}-${i}`} className="flex items-start gap-4 border border-zinc-700 bg-zinc-900 p-4">
+                <Link key={`${m.title}-${m.author}-${i}`} href={`/mods/${toSlug(m.title)}`} className="group flex items-start gap-4 border border-zinc-700 bg-zinc-900 p-4 transition-all hover:-translate-y-0.5 hover:border-purple-700 hover:shadow-md hover:shadow-purple-900/20">
                   <div className="shrink-0">
-                    <Link href={`/mods/${toSlug(m.title)}`}>
-                      <Image src={m.imageSrc} alt={m.title} width={64} height={64} className="border border-zinc-700" />
-                    </Link>
+                    <Image src={m.imageSrc} alt={m.title} width={64} height={64} className="border border-zinc-700 transition-colors group-hover:border-purple-700" />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <Link href={`/mods/${toSlug(m.title)}`} className="text-zinc-50 text-lg font-semibold hover:text-purple-500">
+                      <div className="text-zinc-50 text-lg font-semibold transition-colors group-hover:text-purple-500">
                         {m.title}
-                      </Link>
+                      </div>
                       <div className="text-zinc-500 text-sm">by {m.author}</div>
                     </div>
                     <div className="mt-2 flex flex-wrap items-center gap-2">
                       {[m.category, ...m.tags].map((t, i) => (
-                        <span key={`${t}-${i}`} className="inline-flex items-center gap-1 border border-zinc-700 bg-zinc-800/60 px-2 py-1 text-[11px] text-zinc-300">
+                        <span key={`${t}-${i}`} className="inline-flex items-center gap-1 border border-zinc-700 bg-zinc-800/60 px-2 py-1 text-[11px] text-zinc-300 transition-colors group-hover:border-purple-700 group-hover:text-zinc-200">
                           <svg viewBox="0 0 24 24" className="h-3 w-3" aria-hidden>
                             <circle cx="12" cy="12" r="3" fill="currentColor" />
                           </svg>
@@ -297,7 +295,7 @@ function ModsContent() {
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-2 text-sm">
-                    <div className="inline-flex items-center gap-1 text-zinc-300">
+                    <div className="inline-flex items-center gap-1 text-zinc-300 transition-colors group-hover:text-zinc-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
                         <path d="M12 3v10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                         <path d="M8 9l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -305,7 +303,7 @@ function ModsContent() {
                       </svg>
                       {formatCount(m.downloads)} downloads
                     </div>
-                    <div className="inline-flex items-center gap-1 text-zinc-300">
+                    <div className="inline-flex items-center gap-1 text-zinc-300 transition-colors group-hover:text-zinc-200">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
                         <path d="M12 21s-7-4.35-7-10a4 4 0 018 0 4 4 0 018 0c0 5.65-7 10-7 10z" fill="none" stroke="currentColor" strokeWidth="2" />
                       </svg>
@@ -319,7 +317,7 @@ function ModsContent() {
                       {formatUpdatedAt(m.updatedAt)}
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
 
@@ -331,7 +329,7 @@ function ModsContent() {
                 <button
                   onClick={() => applyParams({ page: String(Math.max(1, page - 1)) })}
                   disabled={page <= 1}
-                  className="grid place-items-center h-8 w-8 border border-zinc-700 text-zinc-300 disabled:opacity-50"
+                  className="grid place-items-center h-8 w-8 border border-zinc-700 text-zinc-300 disabled:opacity-50 transition-all hover:border-purple-700 hover:-translate-y-0.5"
                 >
                   <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
                     <path d="M16 5l-8 7 8 7" fill="none" stroke="currentColor" strokeWidth="2" />
@@ -342,7 +340,7 @@ function ModsContent() {
                 <button
                   onClick={() => applyParams({ page: String(Math.min(pageCount, page + 1)) })}
                   disabled={page >= pageCount}
-                  className="grid place-items-center h-8 w-8 border border-zinc-700 text-zinc-300 disabled:opacity-50"
+                  className="grid place-items-center h-8 w-8 border border-zinc-700 text-zinc-300 disabled:opacity-50 transition-all hover:border-purple-700 hover:-translate-y-0.5"
                 >
                   <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
                     <path d="M8 5l8 7-8 7" fill="none" stroke="currentColor" strokeWidth="2" />
