@@ -7,12 +7,12 @@ export default function NavLinks() {
   const isActive = (href: string) => pathname.startsWith(href);
 
   return (
-    <nav className="hidden md:flex items-center gap-6">
+    <nav className="hidden md:flex items-center gap-4">
       <div className="relative group">
         <Link
           href="/mods"
           className={`inline-flex items-center gap-1 text-sm ${
-            isActive("/mods") ? "text-purple-500" : "text-zinc-300 hover:text-zinc-100"
+            isActive("/mods") ? "text-mauve-600" : "text-zinc-300 hover:text-zinc-100"
           }`}
         >
           <span>Mods</span>
@@ -21,7 +21,7 @@ export default function NavLinks() {
           </svg>
         </Link>
         <div className="absolute left-0 top-full hidden group-hover:block pt-2 z-50">
-          <div className="border border-zinc-700 bg-black p-2 w-48">
+          <div className="border border-mauve-700 bg-black/60 backdrop-blur-md p-2 w-48 rounded-lg shadow-md shadow-purple-900/20">
             <Link href="/mods?sort=popular" className="block px-2 py-1 text-xs text-zinc-300 hover:text-purple-500">Popular</Link>
             <Link href="/mods?sort=new" className="block px-2 py-1 text-xs text-zinc-300 hover:text-purple-500">New</Link>
             <Link href="/mods?sort=top" className="block px-2 py-1 text-xs text-zinc-300 hover:text-purple-500">Top Rated</Link>
@@ -32,7 +32,7 @@ export default function NavLinks() {
       <Link
         href="/categories"
         className={`text-sm ${
-          isActive("/categories") ? "text-purple-500" : "text-zinc-300 hover:text-zinc-100"
+          isActive("/categories") ? "text-mauve-600" : "text-zinc-300 hover:text-zinc-100"
         }`}
       >
         Categories

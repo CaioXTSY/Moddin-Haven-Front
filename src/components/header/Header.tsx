@@ -5,15 +5,17 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-zinc-800 bg-black/80 backdrop-blur">
+    <header className="sticky top-2 z-50 w-full bg-transparent">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="flex h-14 items-center justify-between">
-          <div className="flex items-center gap-6">
-            <Logo />
+        <div className="relative grid grid-cols-3 items-center h-14 rounded-full border border-mauve-700/40 bg-black/35 backdrop-blur-lg shadow-lg shadow-purple-900/20 px-4">
+          <div className="hidden md:flex items-center gap-4 justify-self-start">
             <NavLinks />
           </div>
-          <div className="flex items-center gap-3">
-            <Link href="/mods/submit" className="inline-flex border border-purple-700 px-3 py-1.5 text-sm text-purple-500 hover:bg-purple-600 hover:text-black">Submit</Link>
+          <div className="justify-self-center">
+            <Logo />
+          </div>
+          <div className="flex items_center gap-2 justify-self-end">
+            <Link href="/mods/submit" className="inline-flex border border-mauve-700 px-3 py-1.5 text-sm text-mauve-600 hover:bg-mauve-600 hover:text-black rounded-full">Submit</Link>
             <AuthButtons />
           </div>
         </div>
