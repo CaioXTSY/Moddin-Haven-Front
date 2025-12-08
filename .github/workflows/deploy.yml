@@ -36,6 +36,25 @@ jobs:
           PM2_APP_NAME: modding-haven-front
           PORT: 3456
         run: |
+          # 1. Limpa a pasta remota
           sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "mkdir -p $REMOTE_DIR && rm -rf $REMOTE_DIR/*"
+          
+          # 2. Envia os arquivos novos
           sshpass -p "$SERVER_PASSWORD" scp -o StrictHostKeyChecking=no -r .next public package.json package-lock.json $SERVER_USER@$SERVER_IP:$REMOTE_DIR
-          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd $REMOTE_DIR && npm ci --omit=dev && npm install -g pm2 && pm2 delete $PM2_APP_NAME 2>/dev/null || true && NODE_ENV=production pm2 start 'npm run start -- -p $PORT -H 127.0.0.1' --name $PM2_APP_NAME --cwd $REMOTE_DIR && pm2 save && echo '✅ Deploy concluído - Rodando na porta ' $PORT"
+          
+          # 3. Instala deps e reinicia o PM2 (COM CORREÇÃO PARA O CONFLITO)
+          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "
+            cd $REMOTE_DIR && 
+            npm ci --omit=dev && 
+            
+            # MATA O PROCESSO ANTIGO (O culpado ID 4) SE ELE EXISTIR
+            pm2 delete modding-haven 2>/dev/null || true && 
+            
+            # Mata o processo novo se já existir
+            pm2 delete $PM2_APP_NAME 2>/dev/null || true && 
+            
+            # Inicia o app na porta correta
+            NODE_ENV=production pm2 start 'npm run start -- -p $PORT -H 127.0.0.1' --name $PM2_APP_NAME --cwd $REMOTE_DIR --update-env && 
+            pm2 save && 
+            echo '✅ Deploy concluído - Rodando na porta $PORT'
+          "
