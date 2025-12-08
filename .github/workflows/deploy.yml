@@ -36,24 +36,27 @@ jobs:
           PM2_APP_NAME: modding-haven-front
           PORT: 3456
         run: |
-          # 1. Limpa a pasta remota
-          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "mkdir -p $REMOTE_DIR && rm -rf $REMOTE_DIR/*"
-          
-          # 2. Envia os arquivos novos
-          sshpass -p "$SERVER_PASSWORD" scp -o StrictHostKeyChecking=no -r .next public package.json package-lock.json $SERVER_USER@$SERVER_IP:$REMOTE_DIR
-          
-          # 3. Instala deps e reinicia o PM2 (COM CORREÇÃO PARA O CONFLITO)
+          # 1. LIMPEZA "CIRÚRGICA" (IGUAL AO PORTFOLIO)
+          # Isso garante que a pasta .next seja apagada, mantendo apenas node_modules
+          sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP \
+            "mkdir -p $REMOTE_DIR && \
+             cd $REMOTE_DIR && \
+             rm -rf .next .swc public package.json package-lock.json next.config.js"
+
+          # 2. ENVIAR ARQUIVOS
+          sshpass -p "$SERVER_PASSWORD" scp -o StrictHostKeyChecking=no -r \
+            .next public package.json package-lock.json \
+            $SERVER_USER@$SERVER_IP:$REMOTE_DIR
+
+          # 3. REINICIAR (COM UPDATE DE ENV E NODE_MODULES)
           sshpass -p "$SERVER_PASSWORD" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "
             cd $REMOTE_DIR && 
             npm ci --omit=dev && 
             
-            # MATA O PROCESSO ANTIGO (O culpado ID 4) SE ELE EXISTIR
-            pm2 delete modding-haven 2>/dev/null || true && 
-            
-            # Mata o processo novo se já existir
+            # Garante que mata o processo velho (ID 4 ou 7) e inicia o novo limpo
             pm2 delete $PM2_APP_NAME 2>/dev/null || true && 
-            
-            # Inicia o app na porta correta
+            pm2 delete modding-haven 2>/dev/null || true && 
+
             NODE_ENV=production pm2 start 'npm run start -- -p $PORT -H 127.0.0.1' --name $PM2_APP_NAME --cwd $REMOTE_DIR --update-env && 
             pm2 save && 
             echo '✅ Deploy concluído - Rodando na porta $PORT'
