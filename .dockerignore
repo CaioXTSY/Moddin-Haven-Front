@@ -1,0 +1,25 @@
+# Dependencies
+node_modules
+
+# Next.js build output
+.next
+out
+build
+
+# Env and logs
+.env*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# VCS
+.git
+.gitignore
+.gitattributes
+.github
+
+# Misc
+Dockerfile
+.dockerignore
+README.md
