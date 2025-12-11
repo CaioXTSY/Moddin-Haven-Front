@@ -3,6 +3,24 @@ import { use, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+type Game = "gta3" | "vc" | "sa" | "gta4" | "gta5";
+
+const gameLabels: Record<Game, string> = {
+  gta3: "GTA III",
+  vc: "GTA Vice City",
+  sa: "GTA San Andreas",
+  gta4: "GTA IV",
+  gta5: "GTA V",
+};
+
+const gameAccentMap: Record<Game, { tile: string; chip: string }> = {
+  gta3: { tile: "hover:border-peach-700 hover:shadow-peach-500/20", chip: "border-peach-700 text-peach-500" },
+  vc: { tile: "hover:border-pink-700 hover:shadow-pink-500/20", chip: "border-pink-700 text-pink-500" },
+  sa: { tile: "hover:border-green-500 hover:shadow-green-500/20", chip: "border-green-500 text-green-500" },
+  gta4: { tile: "hover:border-blue-700 hover:shadow-blue-500/20", chip: "border-blue-700 text-blue-500" },
+  gta5: { tile: "hover:border-sapphire-700 hover:shadow-sapphire-500/20", chip: "border-sapphire-700 text-sapphire-500" },
+};
+
 type ModDetail = {
   title: string;
   author: string;
@@ -19,6 +37,7 @@ type ModDetail = {
   requirements?: string[];
   reviews?: number;
   changelog?: { version: string; notes: string }[];
+  game: Game;
 };
 
 const base: ModDetail = {
@@ -37,6 +56,7 @@ const base: ModDetail = {
   requirements: ["Windows 10/11", "GPU dedicada recomendada", "8GB RAM mínimo", "20GB livre"],
   reviews: 320,
   changelog: [{ version: "v1.4.2", notes: "Release estável." }],
+  game: "sa",
 };
 
 const mods: Record<string, ModDetail> = {
@@ -141,21 +161,27 @@ export default function ModDetailPage({ params }: { params: Promise<{ slug: stri
               <div className="mt-1 text-zinc-400 text-sm">by {mod.author}</div>
             </div>
 
-            <div className="border border-zinc-700 bg-zinc-900 p-4 space-y-4 rounded-xl transition-all hover:border-mauve-700 hover:shadow-md hover:shadow-purple-900/20">
-              <div className="flex items-center justify-between">
-                <div className="inline-flex items-center gap-2 text-zinc-50">
-                  <svg viewBox="0 0 24 24" className="h-5 w-5 text-mauve-600" aria-hidden>
-                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="currentColor" />
-                  </svg>
-                  {mod.rating.toFixed(1)}
-                </div>
-                <div className="text-zinc-400 text-sm">{mod.reviews ?? 0} reviews</div>
+          <div className={`border border-zinc-700 bg-zinc-900 p-4 space-y-4 rounded-xl transition-all ${gameAccentMap[mod.game].tile}`}>
+            <div className="flex items-center justify-between">
+              <div className="inline-flex items-center gap-2 text-zinc-50">
+                <svg viewBox="0 0 24 24" className="h-5 w-5 text-mauve-600" aria-hidden>
+                  <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="currentColor" />
+                </svg>
+                {mod.rating.toFixed(1)}
               </div>
-              <div className="flex items-center justify-between">
-                <div className="inline-flex items-center gap-2 text-zinc-300">
-                  <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden>
-                    <path d="M12 3v10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                    <path d="M8 9l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <div className="text-zinc-400 text-sm">{mod.reviews ?? 0} reviews</div>
+            </div>
+            <div className={`inline-flex items-center gap-2 border bg-black/40 px-2 py-1 text-xs rounded-full ${gameAccentMap[mod.game].chip}`}>
+              <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden>
+                <circle cx="12" cy="12" r="3" fill="currentColor" />
+              </svg>
+              {gameLabels[mod.game]}
+            </div>
+            <div className="flex items-center justify-between">
+              <div className="inline-flex items-center gap-2 text-zinc-300">
+                <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden>
+                  <path d="M12 3v10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                  <path d="M8 9l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     <rect x="4" y="17" width="16" height="3" rx="1" fill="none" stroke="currentColor" strokeWidth="2" />
                   </svg>
                   {formatCount(mod.downloads)} downloads

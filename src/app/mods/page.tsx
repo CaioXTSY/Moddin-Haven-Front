@@ -5,6 +5,49 @@ import Link from "next/link";
 import Image from "next/image";
  
 
+type Game = "gta3" | "vc" | "sa" | "gta4" | "gta5";
+
+const gameLabels: Record<Game, string> = {
+  gta3: "GTA III",
+  vc: "GTA Vice City",
+  sa: "GTA San Andreas",
+  gta4: "GTA IV",
+  gta5: "GTA V",
+};
+
+const gameAccentMap: Record<Game, { tile: string; tag: string; chip: string; ring: string }> = {
+  gta3: {
+    tile: "hover:border-peach-700 hover:shadow-peach-500/20",
+    tag: "border-peach-700 text-peach-500 group-hover:border-peach-700 group-hover:bg-peach-600 group-hover:text-black",
+    chip: "border-peach-700 text-peach-500",
+    ring: "from-peach-700/40 to-peach-500/20",
+  },
+  vc: {
+    tile: "hover:border-pink-700 hover:shadow-pink-500/20",
+    tag: "border-pink-700 text-pink-500 group-hover:border-pink-700 group-hover:bg-pink-700 group-hover:text-black",
+    chip: "border-pink-700 text-pink-500",
+    ring: "from-pink-700/40 to-pink-500/20",
+  },
+  sa: {
+    tile: "hover:border-green-500 hover:shadow-green-500/20",
+    tag: "border-green-500 text-green-500 group-hover:border-green-500 group-hover:bg-green-500 group-hover:text-black",
+    chip: "border-green-500 text-green-500",
+    ring: "from-green-600/40 to-green-500/20",
+  },
+  gta4: {
+    tile: "hover:border-blue-700 hover:shadow-blue-500/20",
+    tag: "border-blue-700 text-blue-500 group-hover:border-blue-700 group-hover:bg-blue-500 group-hover:text-black",
+    chip: "border-blue-700 text-blue-500",
+    ring: "from-blue-700/40 to-blue-500/20",
+  },
+  gta5: {
+    tile: "hover:border-sapphire-700 hover:shadow-sapphire-500/20",
+    tag: "border-sapphire-700 text-sapphire-500 group-hover:border-sapphire-700 group-hover:bg-sapphire-500 group-hover:text-black",
+    chip: "border-sapphire-700 text-sapphire-500",
+    ring: "from-sapphire-700/40 to-sapphire-500/20",
+  },
+};
+
 type Mod = {
   title: string;
   author: string;
@@ -15,18 +58,19 @@ type Mod = {
   updatedAt: string;
   followers: number;
   tags: string[];
+  game: Game;
 };
 
 
 const allMods: Mod[] = [
-  { title: "Pablo mod", author: "Pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
-  { title: "Pablo mod", author: "Pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
-  { title: "Pablo mod", author: "Pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
-  { title: "Pablo mod", author: "Pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
-  { title: "Pablo mod", author: "Pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
-  { title: "Pablo mod", author: "Pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
-  { title: "Pablo mod", author: "Pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
-  { title: "Pablo mod", author: "Pablo", category: "vehicles", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Vehicles"] },
+  { title: "Neon Streets", author: "Pablo", category: "graphics", downloads: 12500, rating: 4.8, imageSrc: "/img.png", updatedAt: "2025-11-10", followers: 2400, tags: ["Client", "Graphics"], game: "sa" },
+  { title: "Rapid Fire", author: "Pablo", category: "weapons", downloads: 9800, rating: 4.6, imageSrc: "/img.png", updatedAt: "2025-10-02", followers: 1800, tags: ["Client", "Weapons"], game: "vc" },
+  { title: "Turbo Drift", author: "Pablo", category: "vehicles", downloads: 152000, rating: 4.9, imageSrc: "/img.png", updatedAt: "2025-09-18", followers: 5200, tags: ["Client", "Vehicles"], game: "gta5" },
+  { title: "Shader FX", author: "Pablo", category: "graphics", downloads: 62000, rating: 4.7, imageSrc: "/img.png", updatedAt: "2025-08-03", followers: 3100, tags: ["Client", "Graphics"], game: "gta4" },
+  { title: "Classic Cars", author: "Pablo", category: "vehicles", downloads: 8700, rating: 4.5, imageSrc: "/img.png", updatedAt: "2025-07-21", followers: 1400, tags: ["Client", "Vehicles"], game: "gta3" },
+  { title: "Creator Tools", author: "Pablo", category: "tools", downloads: 2200, rating: 4.2, imageSrc: "/img.png", updatedAt: "2025-11-01", followers: 600, tags: ["Client", "Tools"], game: "sa" },
+  { title: "Street Style", author: "Pablo", category: "characters", downloads: 4500, rating: 4.4, imageSrc: "/img.png", updatedAt: "2025-10-15", followers: 900, tags: ["Client", "Characters"], game: "vc" },
+  { title: "Cops AI", author: "Pablo", category: "scripting", downloads: 3100, rating: 4.3, imageSrc: "/img.png", updatedAt: "2025-10-28", followers: 750, tags: ["Client", "Scripting"], game: "gta4" },
 ];
 
 
@@ -105,6 +149,7 @@ function ModsContent() {
   const sortParam = params.get("sort") ?? "popular";
   const viewParam = parseInt(params.get("view") ?? "20", 10) || 20;
   const pageParam = parseInt(params.get("page") ?? "1", 10) || 1;
+  const gameParam = (params.get("game") ?? "").toLowerCase() as Game | "";
   const [catSearch, setCatSearch] = useState("");
 
   const categoryMeta = useMemo(() => ([
@@ -122,6 +167,12 @@ function ModsContent() {
     return map;
   }, []);
 
+  const gameCounts = useMemo(() => {
+    const map: Record<string, number> = {};
+    for (const m of allMods) map[m.game] = (map[m.game] ?? 0) + 1;
+    return map;
+  }, []);
+
   const filteredCategories = useMemo(() => {
     const q = catSearch.trim().toLowerCase();
     const list = q ? categoryMeta.filter((c) => c.name.toLowerCase().includes(q)) : categoryMeta;
@@ -130,6 +181,9 @@ function ModsContent() {
 
   const filtered = useMemo(() => {
     let list = allMods;
+    if (gameParam) {
+      list = list.filter((m) => m.game === gameParam);
+    }
     if (queryParam.trim()) {
       const ql = queryParam.toLowerCase();
       list = list.filter(
@@ -146,7 +200,7 @@ function ModsContent() {
     else if (sortParam === "top") list = [...list].sort((a, b) => b.rating - a.rating);
     else if (sortParam === "new") list = [...list].sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt));
     return list;
-  }, [queryParam, selectedCategoryParam, sortParam]);
+  }, [gameParam, queryParam, selectedCategoryParam, sortParam]);
 
   const total = filtered.length;
   const pageSize = viewParam;
@@ -156,13 +210,14 @@ function ModsContent() {
   const end = start + pageSize;
   const pageItems = filtered.slice(start, end);
 
-  function applyParams(next: { query?: string; category?: string; sort?: string; view?: string; page?: string }) {
+  function applyParams(next: { query?: string; category?: string; sort?: string; view?: string; page?: string; game?: string }) {
     const p = new URLSearchParams({
       query: next.query ?? queryParam,
       category: next.category ?? selectedCategoryParam,
       sort: next.sort ?? sortParam,
       view: next.view ?? String(viewParam),
       page: next.page ?? String(page),
+      game: next.game ?? (gameParam || ""),
     });
     router.replace(`/mods?${p.toString()}`);
   }
@@ -175,12 +230,57 @@ function ModsContent() {
             <h1 className="text-zinc-50 text-3xl sm:text-4xl font-bold">Browse Mods</h1>
             <div className="mt-3 h-px w-16 bg-purple-700" />
             <p className="mt-3 text-zinc-400">Search, filter by category, and sort results.</p>
+            {gameParam && (
+              <div className="mt-3 inline-flex items-center gap-2">
+                <div className={`inline-flex items-center gap-2 border bg-black/40 px-2 py-1 text-xs rounded-full ${gameAccentMap[gameParam].chip}`}>
+                  <svg viewBox="0 0 24 24" className="h-3 w-3" aria-hidden>
+                    <circle cx="12" cy="12" r="3" fill="currentColor" />
+                  </svg>
+                  {gameLabels[gameParam]}
+                </div>
+                <button onClick={() => applyParams({ game: "", page: "1" })} className="text-xs text-zinc-400 hover:text-zinc-200">Clear</button>
+              </div>
+            )}
           </div>
           <Link href="/categories" className="border border-mauve-700 px-3 py-1.5 text-sm text-mauve-600 hover:bg-mauve-600 hover:text-black rounded-md transition">Categories →</Link>
         </div>
 
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4">
           <aside className="md:col-span-1 space-y-4">
+            <div className="border border-zinc-700 bg-zinc-900 p-4 rounded-lg">
+              <div className="flex items-center justify-between">
+                <div className="text-zinc-300 text-sm">Game</div>
+                {gameParam && (
+                  <button onClick={() => { applyParams({ game: "", page: "1" }); }} className="text-xs text-purple-500">Clear</button>
+                )}
+              </div>
+              <div className="mt-3 space-y-2">
+                <button onClick={() => { applyParams({ game: "", page: "1" }); }} className={`group flex w-full items-center justify-between border px-3 py-2 text-sm rounded-md transition-all hover:-translate-y-0.5 hover:border-purple-700 ${gameParam === "" ? "border-purple-700 text-purple-500" : "border-zinc-700 text-zinc-300"}`}>
+                  <div className="flex items-center gap-3">
+                    <div className="grid place-items-center h-6 w-6 border border-zinc-700 text-purple-500 transition-colors group-hover:border-purple-700 group-hover:bg-purple-600 group-hover:text-black rounded-md">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+                        <path d="M8 5l8 7-8 7" fill="none" stroke="currentColor" strokeWidth="2" />
+                      </svg>
+                    </div>
+                    <span className="transition-colors group-hover:text-purple-400">All games</span>
+                  </div>
+                  <span className="text-xs text-zinc-400 transition-colors group-hover:text-zinc-200">{allMods.length}</span>
+                </button>
+                {(["gta3", "vc", "sa", "gta4", "gta5"] as Game[]).map((g) => (
+                  <button key={g} onClick={() => { applyParams({ game: g, page: "1" }); }} className={`group flex w-full items-center justify-between border px-3 py-2 text-sm rounded-md transition-all hover:-translate-y-0.5 hover:border-purple-700 ${gameParam === g ? "border-purple-700 text-purple-500" : "border-zinc-700 text-zinc-300"}`}>
+                    <div className="flex items-center gap-3">
+                      <div className={`grid place-items-center h-6 w-6 border ${gameParam === g ? "border-purple-700 text-purple-500" : "border-zinc-700 text-zinc-400"} transition-colors group-hover:border-purple-700 group-hover:bg-purple-600 group-hover:text-black rounded-md`}>
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+                          <circle cx="12" cy="12" r="3" fill="currentColor" />
+                        </svg>
+                      </div>
+                      <span className="transition-colors group-hover:text-purple-400">{gameLabels[g]}</span>
+                    </div>
+                    <span className="text-xs text-zinc-400 transition-colors group-hover:text-zinc-200">{gameCounts[g] ?? 0}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
             <div className="border border-zinc-700 bg-zinc-900 p-4 rounded-lg">
               <div className="flex items-center justify-between">
                 <div className="text-zinc-300 text-sm">Category</div>
@@ -270,52 +370,81 @@ function ModsContent() {
 
             <div className="mt-3 text-zinc-400 text-sm">{total} result(s)</div>
 
-            <div className="mt-6 space-y-4">
+            <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {pageItems.map((m, i) => (
-                <Link key={`${m.title}-${m.author}-${i}`} href={`/mods/${toSlug(m.title)}`} className="group flex items-start gap-4 border border-zinc-700 bg-zinc-900 p-4 rounded-lg transition-all hover:-translate-y-0.5 hover:border-purple-700 hover:shadow-md hover:shadow-purple-900/20">
-                  <div className="shrink-0">
-                    <Image src={m.imageSrc} alt={m.title} width={64} height={64} className="border border-zinc-700 rounded-md transition-colors group-hover:border-purple-700" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <div className="text-zinc-50 text-lg font-semibold transition-colors group-hover:text-purple-500">
-                        {m.title}
-                      </div>
-                      <div className="text-zinc-500 text-sm">by {m.author}</div>
+                <Link
+                  key={`${m.title}-${m.author}-${i}`}
+                  href={`/mods/${toSlug(m.title)}`}
+                  className={`relative group border border-zinc-800 bg-zinc-900 transition-all hover:-translate-y-0.5 hover:shadow-lg ${gameAccentMap[m.game].tile} rounded-lg overflow-hidden`}
+                >
+                  <div className="relative h-48 sm:h-56 md:h-64">
+                    <Image
+                      src={m.imageSrc}
+                      alt={m.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/70" />
+
+                    <div className={`absolute left-4 top-4 inline-flex items-center gap-2 border bg-zinc-900/70 px-2 py-1 text-[11px] rounded-full ${gameAccentMap[m.game].tag}`}>
+                      <svg viewBox="0 0 24 24" className="h-3 w-3" aria-hidden>
+                        <circle cx="12" cy="12" r="3" fill="currentColor" />
+                      </svg>
+                      {gameLabels[m.game]}
                     </div>
-                    <div className="mt-2 flex flex-wrap items-center gap-2">
-                      {[m.category, ...m.tags].map((t, i) => (
-                        <span key={`${t}-${i}`} className="inline-flex items-center gap-1 border border-zinc-700 bg-zinc-800/60 px-2 py-1 text-[11px] text-zinc-300 rounded-full transition-colors group-hover:border-purple-700 group-hover:text-zinc-200">
-                          <svg viewBox="0 0 24 24" className="h-3 w-3" aria-hidden>
-                            <circle cx="12" cy="12" r="3" fill="currentColor" />
+
+                    
+
+                    <div className="absolute inset-x-0 bottom-0 p-4">
+                      <div className="flex items-end justify-between">
+                        <div>
+                          <div className="text-zinc-50 text-lg sm:text-xl font-semibold tracking-wide">{m.title}</div>
+                          <div className="mt-1 text-zinc-400 text-xs sm:text-sm">by {m.author}</div>
+                        </div>
+                        <div className="grid place-items-center h-8 w-8 border border-purple-700 text-purple-500 bg-black/60 backdrop-blur transition-all group-hover:bg-purple-600 group-hover:text-black group-hover:-translate-y-0.5 rounded-full">
+                          <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+                            <path d="M5 12h12M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" />
                           </svg>
-                          {t}
-                        </span>
-                      ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex flex-col items-end gap-2 text-sm">
-                    <div className="inline-flex items-center gap-1 text-zinc-300 transition-colors group-hover:text-zinc-200">
-                      <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
-                        <path d="M12 3v10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                        <path d="M8 9l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        <rect x="4" y="17" width="16" height="3" rx="1" fill="none" stroke="currentColor" strokeWidth="2" />
-                      </svg>
-                      {formatCount(m.downloads)} downloads
+
+                  <div className="px-4 py-3 flex flex-wrap items-center gap-2">
+                    <div className="inline-flex items-center gap-2">
+                      <div className="inline-flex items-center gap-1 border border-zinc-700 bg-zinc-800/60 px-2 py-1 text-xs text-zinc-200 rounded-full">
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+                          <path d="M12 3v10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                          <path d="M8 9l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          <rect x="4" y="17" width="16" height="3" rx="1" fill="none" stroke="currentColor" strokeWidth="2" />
+                        </svg>
+                        {formatCount(m.downloads)}
+                      </div>
+                      <div className="inline-flex items_center gap-1 border border-zinc-700 bg-zinc-800/60 px-2 py-1 text-xs text-purple-500 rounded-full">
+                        <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
+                          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="currentColor" />
+                        </svg>
+                        {m.rating}
+                      </div>
                     </div>
-                    <div className="inline-flex items-center gap-1 text-zinc-300 transition-colors group-hover:text-zinc-200">
-                      <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
-                        <path d="M12 21s-7-4.35-7-10a4 4 0 018 0 4 4 0 018 0c0 5.65-7 10-7 10z" fill="none" stroke="currentColor" strokeWidth="2" />
-                      </svg>
-                      {formatCount(m.followers)} followers
-                    </div>
-                    <div className="inline-flex items-center gap-1 text-zinc-400">
+                    {[m.category, ...m.tags].map((t, idx) => (
+                      <span
+                        key={`${t}-${idx}`}
+                        className="inline-flex items-center gap-1 border border-zinc-700 bg-zinc-800/60 px-2 py-1 text-[11px] text-zinc-300 rounded-full transition-colors group-hover:border-purple-700 group-hover:text-zinc-200"
+                      >
+                        <svg viewBox="0 0 24 24" className="h-3 w-3" aria-hidden>
+                          <circle cx="12" cy="12" r="3" fill="currentColor" />
+                        </svg>
+                        {t}
+                      </span>
+                    ))}
+                    <span className="ml-auto inline-flex items-center gap-1 text-zinc-400 text-xs">
                       <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden>
                         <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                         <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="2" />
                       </svg>
                       {formatUpdatedAt(m.updatedAt)}
-                    </div>
+                    </span>
                   </div>
                 </Link>
               ))}

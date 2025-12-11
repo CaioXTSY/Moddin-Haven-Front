@@ -18,6 +18,7 @@ type ModSubmit = {
   license: string;
   homepage?: string;
   sourceUrl?: string;
+  game?: "gta3" | "vc" | "sa" | "gta4" | "gta5";
 };
 
 function formatFileSize(bytes: number) {
@@ -39,6 +40,22 @@ export default function SubmitModPage() {
     { name: "Characters", slug: "characters" },
   ], []);
 
+  const games = useMemo(() => ([
+    { name: "GTA III", slug: "gta3" },
+    { name: "GTA Vice City", slug: "vc" },
+    { name: "GTA San Andreas", slug: "sa" },
+    { name: "GTA IV", slug: "gta4" },
+    { name: "GTA V", slug: "gta5" },
+  ]), []);
+
+  const gameChipAccent: Record<NonNullable<ModSubmit["game"]>, string> = {
+    gta3: "border-peach-700 text-peach-500",
+    vc: "border-pink-700 text-pink-500",
+    sa: "border-green-500 text-green-500",
+    gta4: "border-blue-700 text-blue-500",
+    gta5: "border-sapphire-700 text-sapphire-500",
+  };
+
   const licenses = [
     { label: "All rights reserved", value: "arr" },
     { label: "MIT", value: "mit" },
@@ -56,6 +73,7 @@ export default function SubmitModPage() {
     changelog: "",
     gallery: [],
     license: "arr",
+    game: undefined,
   });
 
   const [tagInput, setTagInput] = useState("");
@@ -80,6 +98,7 @@ export default function SubmitModPage() {
     if (!data.title.trim()) e.title = "Required";
     if (!data.author.trim()) e.author = "Required";
     if (!data.category.trim()) e.category = "Select";
+    if (!data.game?.trim()) e.game = "Select";
     if (!data.description.trim() || data.description.trim().length < 30) e.description = "Minimum 30 characters";
     if (!data.version.trim()) e.version = "Required";
     if (!data.modFile) e.modFile = "Upload the mod file";
@@ -130,6 +149,24 @@ export default function SubmitModPage() {
                   <label className="text-xs text-zinc-400">Author</label>
                   <input value={data.author} onChange={(e) => setData({ ...data, author: e.target.value })} className={`mt-1 w-full border px-3 py-2 text-sm rounded-md ${errors.author ? "border-red-600" : "border-zinc-700 bg-zinc-900 text-zinc-200"}`} placeholder="Your name" />
                   {errors.author && <div className="mt-1 text-xs text-red-500">{errors.author}</div>}
+                </div>
+                <div>
+                  <label className="text-xs text-zinc-400">Game</label>
+                  <select value={data.game ?? ""} onChange={(e) => setData({ ...data, game: e.target.value as ModSubmit["game"] })} className={`mt-1 w-full border px-3 py-2 text-sm rounded-md ${errors.game ? "border-red-600" : "border-zinc-700 bg-zinc-900 text-zinc-200"}`}>
+                    <option value="">Select…</option>
+                    {games.map((g) => (
+                      <option key={g.slug} value={g.slug}>{g.name}</option>
+                    ))}
+                  </select>
+                  {errors.game && <div className="mt-1 text-xs text-red-500">{errors.game}</div>}
+                  {data.game && (
+                    <div className={`mt-2 inline-flex items-center gap-2 border bg-black/40 px-2 py-1 text-xs rounded-full ${gameChipAccent[data.game]}`}>
+                      <svg viewBox="0 0 24 24" className="h-3 w-3" aria-hidden>
+                        <circle cx="12" cy="12" r="3" fill="currentColor" />
+                      </svg>
+                      {games.find((g) => g.slug === data.game)?.name}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label className="text-xs text-zinc-400">Category</label>
